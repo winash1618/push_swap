@@ -2,6 +2,7 @@
 
 ## Resources
 - https://sharkigamers.github.io/pushswap_epitech_project/ They are explaining how to do this project using circular linked list.
+- https://www.geeksforgeeks.org/linked-list-set-1-introduction/ Linked list explanation.
 
 
 ## How to do it.

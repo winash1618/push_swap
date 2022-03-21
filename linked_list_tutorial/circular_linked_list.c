@@ -8,6 +8,83 @@ typedef struct nums
     struct nums *next_num;
     struct nums *prev_num;
 } new_num;
+size_t	ft_strlen(const char *s)
+{
+	size_t	count;
+
+	count = 0;
+	while (*s++)
+	{
+		count++;
+	}
+	s = s - count;
+	return (count);
+}
+char	*ft_strdup(const char *s1)
+{
+	char	*ptr;
+	int		count;
+
+	count = 0;
+	ptr = (char *) malloc((ft_strlen(s1) + 1) * sizeof(char));
+	if (!ptr)
+		return (NULL);
+	while (*s1)
+	{
+		*ptr++ = *s1++;
+		count++;
+	}
+	*ptr = '\0';
+	ptr = ptr - count;
+	s1 = s1 - count;
+	return (ptr);
+}
+
+
+static int	num_len(int num)
+{
+	int	i;
+
+	if (num < 0)
+		i = 1;
+	else
+		i = 0;
+	while (num)
+	{
+		num /= 10;
+		i++;
+	}
+	return (i);
+}
+
+char	*ft_itoa(int num)
+{
+	int			i;
+	char		*s;
+	int			len;
+	long int	numb;
+
+	numb = num;
+	len = num_len(num);
+	if (!num)
+		return (ft_strdup ("0"));
+	s = (char *)malloc(sizeof(char) * (len + 1));
+	if (!s)
+		return (0);
+	i = len;
+	s[i--] = '\0';
+	if (numb < 0)
+	{
+		s[0] = '-';
+		numb = -numb;
+	}
+	while (numb)
+	{
+		s[i--] = numb % 10 + '0';
+		numb /= 10;
+	}
+	return (s);
+}
 
 int	ft_atoi(const char *str)
 {
@@ -133,13 +210,30 @@ void s_action(new_num **lst)
 	*lst = (*lst)->prev_num;
 	(*lst)->data = temp2;
 }
+void delete_num(new_num *lst)
+{
+	if (lst == lst->next_num)
+	{
+		lst = NULL;
+	}
+	else
+	{
+		(lst->prev_num)->next_num = lst->next_num;
+		(lst->next_num)->prev_num = lst->prev_num;
+		lst = lst->next_num;
+	}
+}
 void p_action(new_num **lst1, new_num **lst2)
 {
-	int temp;
+	
+}
+void r_action(new_num **lst)
+{
 
-	temp = (*lst1)->data;
-	(*lst1)->data = (*lst2)->data;
-	(*lst2)->data = temp;
+}
+void rr_action(new_num **lst)
+{
+
 }
 new_num *ft_lstnew(void *content)
 {
@@ -153,10 +247,18 @@ new_num *ft_lstnew(void *content)
 }
 void ft_lstadd_front(new_num **lst, new_num *new)
 {
-	(*lst)->next_num = new;
+	new->prev_num = (*lst)->prev_num;
+	(*lst)->prev_num->next_num = new;
 	(*lst)->prev_num = new;
-	new->prev_num = (*lst);
 	new->next_num = (*lst);
+	
+}
+void ft_lstadd_back(new_num **lst, new_num *new)
+{
+	new->next_num = (*lst);
+	new->prev_num = (*lst)->prev_num;
+	(*lst)->prev_num->next_num = new;
+	(*lst)->prev_num = new;
 }
 int ft_lstsize(new_num *lst)
 {
@@ -174,9 +276,23 @@ int ft_lstsize(new_num *lst)
 
 int main(int ac, char **av)
 {
+	int i;
+
+	i = 0;
 	new_num *me = set_num_list(av);
 	//printf("%d", (me->next_num)->data);
 	s_action(&me);
 	//printf("%d", (me->next_num)->data);
 	printf("%d", ft_lstsize(me));
+	while (i<5)
+	{
+		//ft_lstadd_front(&me, ft_lstnew(ft_itoa(i)));
+		ft_lstadd_back(&me, ft_lstnew(ft_itoa(i)));
+		i++;
+	}
+	printf("%d", ft_lstsize(me));
+	// printf("%d", ne->data);
+	// ft_lstadd_front(&ne, ne1);
+	// printf("%d", (ne->next_num)->data);
+
 }

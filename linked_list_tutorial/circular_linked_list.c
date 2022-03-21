@@ -85,6 +85,7 @@ new_num *init_num_list(char **arg)
 	num->prev_num = num_last;
 	return (num);
 }
+
 void other_nums(char **arg, new_num **num_first, new_num **num_last, new_num **num)
 {
 	int i;
@@ -121,8 +122,61 @@ new_num *set_num_list(char **arg)
 	num->prev_num = num_last;
 	return (num);
 }
+void s_action(new_num **lst)
+{
+	int temp1;
+	int temp2;
+	temp1 = (*lst)->data;
+	*lst = (*lst)->next_num;
+	temp2 = (*lst)->data;
+	(*lst)->data = temp1;
+	*lst = (*lst)->prev_num;
+	(*lst)->data = temp2;
+}
+void p_action(new_num **lst1, new_num **lst2)
+{
+	int temp;
+
+	temp = (*lst1)->data;
+	(*lst1)->data = (*lst2)->data;
+	(*lst2)->data = temp;
+}
+new_num *ft_lstnew(void *content)
+{
+	new_num *new_lst;
+
+	new_lst = malloc(sizeof(new_num));
+	new_lst->data = ft_atoi((char *)content);
+	new_lst->next_num = new_lst;
+	new_lst->prev_num = new_lst;
+	return (new_lst);
+}
+void ft_lstadd_front(new_num **lst, new_num *new)
+{
+	(*lst)->next_num = new;
+	(*lst)->prev_num = new;
+	new->prev_num = (*lst);
+	new->next_num = (*lst);
+}
+int ft_lstsize(new_num *lst)
+{
+	int i = 1;
+	new_num *num_first = lst;
+
+	lst = lst->next_num;
+	while (lst != num_first)
+	{
+		lst = lst->next_num;
+		i++;
+	}
+	return (i);
+}
+
 int main(int ac, char **av)
 {
 	new_num *me = set_num_list(av);
-	printf("%d", (me->next_num)->data);
+	//printf("%d", (me->next_num)->data);
+	s_action(&me);
+	//printf("%d", (me->next_num)->data);
+	printf("%d", ft_lstsize(me));
 }

@@ -199,42 +199,6 @@ new_num *set_num_list(char **arg)
 	num->prev_num = num_last;
 	return (num);
 }
-void s_action(new_num **lst)
-{
-	int temp1;
-	int temp2;
-	temp1 = (*lst)->data;
-	*lst = (*lst)->next_num;
-	temp2 = (*lst)->data;
-	(*lst)->data = temp1;
-	*lst = (*lst)->prev_num;
-	(*lst)->data = temp2;
-}
-void delete_num(new_num *lst)
-{
-	if (lst == lst->next_num)
-	{
-		lst = NULL;
-	}
-	else
-	{
-		(lst->prev_num)->next_num = lst->next_num;
-		(lst->next_num)->prev_num = lst->prev_num;
-		lst = lst->next_num;
-	}
-}
-void p_action(new_num **lst1, new_num **lst2)
-{
-	
-}
-void r_action(new_num **lst)
-{
-
-}
-void rr_action(new_num **lst)
-{
-
-}
 new_num *ft_lstnew(void *content)
 {
 	new_num *new_lst;
@@ -262,16 +226,61 @@ void ft_lstadd_back(new_num **lst, new_num *new)
 }
 int ft_lstsize(new_num *lst)
 {
-	int i = 1;
+	int i = 1; // sart with zero
 	new_num *num_first = lst;
-
+	if (lst == NULL)
+		return (0);
+	//printf("%d  ", lst->data);
 	lst = lst->next_num;
 	while (lst != num_first)
 	{
+		//printf("%d  ", lst->data);
 		lst = lst->next_num;
 		i++;
 	}
 	return (i);
+}
+
+void s_action(new_num **lst)
+{
+	int temp1;
+	int temp2;
+	temp1 = (*lst)->data;
+	*lst = (*lst)->next_num;
+	temp2 = (*lst)->data;
+	(*lst)->data = temp1;
+	*lst = (*lst)->prev_num;
+	(*lst)->data = temp2;
+}
+void delete_num(new_num *lst)
+{
+	if (lst == lst->next_num)
+	{
+		lst = NULL;
+	}
+	else
+	{
+		(lst->prev_num)->next_num = lst->next_num;
+		(lst->next_num)->prev_num = lst->prev_num;
+		lst = lst->next_num;
+	}
+}
+void p_action(new_num **dst, new_num **src)
+{
+	new_num *num1;
+	int i = (*src)->data;
+
+	num1 = ft_lstnew(ft_itoa(i));
+	ft_lstadd_front(&(*dst), num1);
+	delete_num(*src);
+}
+void r_action(new_num **lst)
+{
+
+}
+void rr_action(new_num **lst)
+{
+
 }
 
 int main(int ac, char **av)
@@ -283,16 +292,24 @@ int main(int ac, char **av)
 	//printf("%d", (me->next_num)->data);
 	s_action(&me);
 	//printf("%d", (me->next_num)->data);
-	printf("%d", ft_lstsize(me));
+	//printf("%d", ft_lstsize(me));
+	//printf("%d \n", ft_lstsize(me));
 	while (i<5)
 	{
 		//ft_lstadd_front(&me, ft_lstnew(ft_itoa(i)));
 		ft_lstadd_back(&me, ft_lstnew(ft_itoa(i)));
 		i++;
 	}
-	printf("%d", ft_lstsize(me));
-	// printf("%d", ne->data);
+	//printf("%d", ft_lstsize(me));
+	new_num *lst;
+	lst = ft_lstnew(ft_itoa(i));
+	// printf("%d", ft_lstsize(lst));
+	// printf("%d", me->data);
+	printf(" \n* %d", ft_lstsize(lst));
+	p_action(&lst, &me);
+	printf(" \n* %d", ft_lstsize(lst));
+	// printf("%d", ft_lstsize(me));
+	 // printf("%d", me->data);
 	// ft_lstadd_front(&ne, ne1);
 	// printf("%d", (ne->next_num)->data);
-
 }

@@ -288,65 +288,68 @@ void rr_action(new_num **lst)
 
 int is_sorted_list(new_num *lst)
 {
-	int sorted = 1;
 	int length = ft_lstsize(lst);
-
-	while(length)
+	while(length > 1)
 	{
 		int temp = lst->data;
 		lst = lst->next_num;
-		if(temp < lst->data)
+		
+		if(temp > lst->data)
+		{
 			return (0);
+		}
+			
 		length--;
 	}
 	return (1);
 }
 
-void radix_sort(new_num **lst)
+void radix_sort(new_num **lst, int j)
 {
 
 	new_num *first_num = *lst;
 	new_num *dst1;
 	dst1 = malloc(sizeof(new_num));
 	int i = 0;
-	int temp = (*lst)->data;
-	*(lst)= (*lst)->next_num;
-	while ((*lst) != first_num)
+	while (i < 10)
 	{
-		if(temp < (*lst)->data)
-			temp = (*lst)->data;
-		*(lst)= (*lst)->next_num;
-	}
-	*lst = (*lst)->next_num;
-	int j = 1;
-
-	*lst = first_num->next_num;
-	j = 1;
-	while (i < 10 && temp != 0)
-	{
+		*lst = first_num->next_num;
 		while ((*lst) != first_num)
 		{
-			int data = (*lst)->data;
+			int data = (*lst)->prev_num->data;
 			data =data/j;
 			if (data % 10 == i)
 			{
-				if (dst1->data != 0)
-					p_action(&dst1, &(*lst));
-				else
-					dst1 = ft_lstnew(ft_itoa((*lst)->data));
+					p_action(&dst1, &((*lst)->prev_num));
+					first_num = *lst;
 			} 
 			r_action(&(*lst));
 		}
 		i++;
-		if (i == 10)
-		{
-			temp = temp / 10;
-			i = 0;
-			j = j * 10;
-			
-		}
+		// if (i == 10)
+		// {
+		// 	i = 0;
+		// 	j = j * 10;
+		// 	radix_sort(&dst1, j);
+		// }
 	}
 }
+
+// void sort_me(new_num **lst)
+// {
+// 	while (is_sorted_list(*lst) == 0)
+// 	{
+// 		if((*lst)->data > (*lst)->next_num->data)
+// 		{
+// 			rr_action(&(*lst));
+// 		}
+// 		// else
+// 		// {
+// 		// 	s_action(&(*lst));
+// 		// }
+// 	}
+// }
+
 int main(int ac, char **av)
 {
 	int i;
@@ -372,7 +375,8 @@ int main(int ac, char **av)
 	// printf(" \n* %d", ft_lstsize(me));
 	// p_action(&lst, &me);
 	// printf(" \n* %d", ft_lstsize(me));
-	radix_sort(&me);
+	// radix_sort(&me);
+	radix_sort(&me, 1);
 	// printf("%d", ft_lstsize(me));
 	 // printf("%d", me->data);
 	// ft_lstadd_front(&ne, ne1);

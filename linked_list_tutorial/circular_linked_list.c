@@ -362,7 +362,7 @@ void radix_sort(new_num **l_a, new_num **l_b, int r, int len)
         }
         else
 		{
-			if (get_min(*l_a) % 10 < temp % 10)
+
             	r_action(l_a);
         }
 		j++;

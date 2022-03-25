@@ -348,13 +348,18 @@ void radix_sort(new_num **l_a, new_num **l_b, int r, int len)
 
 	k = 0;
 	i = 0;
-	j = 0;
+	j = -1;
+	new_num *first_num = (*l_a);
 	while ((*l_a) != NULL)
 	{
 		int temp = (*l_a)->data;
 		temp /= r;
         if (temp % 10 == i)
 		{
+			if (*l_a == first_num)
+			{
+				first_num = (*l_a)->next_num;
+			}
             p_action(l_a, l_b);
             r_action(l_b);
             k++;
@@ -362,13 +367,10 @@ void radix_sort(new_num **l_a, new_num **l_b, int r, int len)
         }
         else
 		{
-
             	r_action(l_a);
         }
-		j++;
-		if (j > len)
+		if (*l_a == first_num && i < 10  && temp % 10 != i)
 		{
-			j = 0;
 			i++;
 		}
     }
@@ -431,8 +433,8 @@ int main(int ac, char **av)
 	// p_action(&me, &lst);
 	// p_action(&me, &lst);
 	// print_lst(me);
-	int max = get_min (me);
-	printf("%d", max);
+	// int max = get_min (me);
+	// printf("%d", max);
 	// int j = 1;
 	// while (max > 0)
 	// {
@@ -442,7 +444,11 @@ int main(int ac, char **av)
 	// }
 	// print_lst(me);
 	radix_sort(&me, &lst, 1, len);
-	//print_lst(lst);
+	if (!me)
+		print_lst(lst);
+	else 
+		print_lst(me);
+	printf("%d", -3 % 2);
 	//printf("%d", is_sorted_list(me, len));
 	//p_action(&lst, &me);
 	// printf(" \n* %d", ft_lstsize(me));

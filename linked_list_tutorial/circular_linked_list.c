@@ -365,13 +365,27 @@ void radix_sort(new_num **l_a, new_num **l_b, int r, int len)
             k++;
 			len--;
         }
+		else if (temp % 10 == j)
+		{
+			if (*l_a == first_num)
+			{
+				first_num = (*l_a)->next_num;
+			}
+            p_action(l_a, l_b);
+            k++;
+			len--;
+		}
         else
 		{
             	r_action(l_a);
         }
-		if (*l_a == first_num && i < 10  && temp % 10 != i)
+		if (*l_a == first_num && i < 10  && temp % 10 != i && (*l_a)->data >= 0 )
 		{
 			i++;
+		}
+		else if (*l_a == first_num && j > -10 && temp % 10 != j)
+		{
+			j--;
 		}
     }
     if (*l_b != NULL && !is_sorted_list(*l_b, k)) {

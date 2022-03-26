@@ -391,6 +391,7 @@ void radix_sort(new_num **l_a, new_num **l_b, int r, int len)
         radix_sort(l_b, l_a, r, len);
     }
 }
+
 void norm_sort(new_num **l_a, new_num **l_b, int len)
 {
 	while (*l_a != NULL)
@@ -399,21 +400,26 @@ void norm_sort(new_num **l_a, new_num **l_b, int len)
 			p_action(l_a, l_b);
 		else if ((*l_a)->data <= (*l_b)->data)
 		{
+			while ((*l_b)->data == (*l_b)->next_num->data && *l_b != (*l_b)->prev_num)
+				rr_action(l_b);
 			while ((*l_a)->data < (*l_b)->prev_num->data && (*l_b)->data > (*l_b)->prev_num->data)
 				rr_action(l_b);
 			p_action(l_a, l_b);
 		}
 		else
 		{
-			while ((*l_a)->data > (*l_b)->next_num->data && (*l_b)->data < (*l_b)->next_num->data)
+			while ((*l_b)->data == (*l_b)->next_num->data && *l_b != (*l_b)->next_num)
+				r_action(l_b);
+			while ((*l_a)->data > (*l_b)->next_num->data && (*l_b)->data < (*l_b)->next_num->data && *l_b != (*l_b)->next_num)
 				r_action(l_b);
 			r_action(l_b);
 			p_action(l_a, l_b);
 		}
 	}
-	while ((*l_b)->data != get_min(*l_b))
+	while (!is_sorted_list(*l_b, len))
 		r_action(l_b);
 }
+
 int get_max(new_num *lst)
 {
 	int temp;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   circular_linked_list.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mkaruvan <mkaruvan@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/26 11:59:02 by mkaruvan          #+#    #+#             */
+/*   Updated: 2022/03/26 12:12:53 by mkaruvan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -284,6 +296,7 @@ void delete_cond(new_num **from)
 
 void p_action(new_num **src, new_num **dst)
 {
+	write(1, "pa \n", 4);
     new_num *save;
     new_num *stock;
 
@@ -308,11 +321,13 @@ void p_action(new_num **src, new_num **dst)
 
 void r_action(new_num **lst)
 {
+	write(1, "rb \n", 4);
 	(*lst) = (*lst)->next_num;
 }
 
 void rr_action(new_num **lst)
 {
+	write(1, "rrb \n", 5);
 	(*lst) = (*lst)->prev_num;
 }
 
@@ -404,30 +419,23 @@ void norm_sort(new_num **l_a, new_num **l_b, int len)
 		}
 		else if ((*l_a)->data <= (*l_b)->data)
 		{
-			while ((*l_a)->data < (*l_b)->prev_num->data && *l_b != (*l_b)->prev_num && (*l_b)->data >= (*l_b)->prev_num->data)
+			while ((*l_a)->data < (*l_b)->prev_num->data && 
+				*l_b != (*l_b)->prev_num && (*l_b)->data >= 
+				(*l_b)->prev_num->data)
 			{
 				j++;
 				rr_action(l_b);
-				while ((*l_b)->data == (*l_b)->prev_num->data && *l_b != (*l_b)->prev_num)
-				{
-					rr_action(l_b);
-					j++;
-				}
 			}
 			p_action(l_a, l_b);
 		}
 		else
 		{
-			
-			while ((*l_a)->data > (*l_b)->next_num->data && *l_b != (*l_b)->next_num && (*l_b)->data <= (*l_b)->next_num->data)
+			while ((*l_a)->data > (*l_b)->next_num->data &&
+			 *l_b != (*l_b)->next_num && (*l_b)->data <= 
+			 (*l_b)->next_num->data)
 			{
 				j++;
 				r_action(l_b);
-				while ((*l_b)->data == (*l_b)->next_num->data && *l_b != (*l_b)->next_num)
-				{
-					j++;
-					r_action(l_b);
-				}	
 			}
 			j = j + 2;
 			r_action(l_b);
@@ -543,7 +551,8 @@ int main(int ac, char **av)
 	// }
 	// print_lst(me);
 	// radix_sort(&me, &lst, 1, len);
-	norm_sort(&me, &lst, len);
+	if (!is_sorted_list(me, len))
+		norm_sort(&me, &lst, len);
 	//print_lst(me);
 
 
@@ -568,8 +577,8 @@ int main(int ac, char **av)
 	// 	}
 	// }
 
-
-	print_lst(lst);
+	if (!me)
+		print_lst(lst);
 	// printf("%d", -3 % 2);
 	//printf("%d", is_sorted_list(me, len));
 	//p_action(&lst, &me);

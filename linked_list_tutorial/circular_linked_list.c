@@ -391,6 +391,29 @@ void radix_sort(new_num **l_a, new_num **l_b, int r, int len)
         radix_sort(l_b, l_a, r, len);
     }
 }
+void norm_sort(new_num **l_a, new_num **l_b, int len)
+{
+	while (*l_a != NULL)
+	{
+		if	(*l_b == NULL)
+			p_action(l_a, l_b);
+		else if ((*l_a)->data <= (*l_b)->data)
+		{
+			while ((*l_a)->data < (*l_b)->prev_num->data && (*l_b)->data > (*l_b)->prev_num->data)
+				rr_action(l_b);
+			p_action(l_a, l_b);
+		}
+		else
+		{
+			while ((*l_a)->data > (*l_b)->next_num->data && (*l_b)->data < (*l_b)->next_num->data)
+				r_action(l_b);
+			r_action(l_b);
+			p_action(l_a, l_b);
+		}
+	}
+	while ((*l_b)->data != get_min(*l_b))
+		r_action(l_b);
+}
 int get_max(new_num *lst)
 {
 	int temp;
@@ -424,41 +447,41 @@ int main(int ac, char **av)
 	i = 0;
 	int len = ac - 1;
 	new_num *me = set_num_list(av);
-	int *arr1;
+	// int *arr1;
 
-	int *arr2;
-	arr1 = malloc(sizeof(int) * len);
-	arr2 = malloc(sizeof(int) * len);
-	while (i < len)
-	{
-		arr1[i] = ft_atoi(av[i + 1]);
-		arr2[i++] = 0;
-	}
-	i = 0;
-	while (i < len)
-	{
-		int j = 0;
-		while (j < len)
-		{
-			if (arr1[i] > arr1[j] && i != j)
-			{
-				arr2[i] = arr2[i] + 1;
-			}
-			j++;
-		}
-		i++;
-	}
-	new_num *first_num = me;
-	i = 0;
-	//print_lst(me);
-	while (me->next_num != first_num)
-	{
-		me->data = arr2[i];
-		me = me->next_num;
-		i++; 
-	}
-	me->data = arr2[i];
-	me = me->next_num;
+	// int *arr2;
+	// arr1 = malloc(sizeof(int) * len);
+	// arr2 = malloc(sizeof(int) * len);
+	// while (i < len)
+	// {
+	// 	arr1[i] = ft_atoi(av[i + 1]);
+	// 	arr2[i++] = 0;
+	// }
+	// i = 0;
+	// while (i < len)
+	// {
+	// 	int j = 0;
+	// 	while (j < len)
+	// 	{
+	// 		if (arr1[i] > arr1[j] && i != j)
+	// 		{
+	// 			arr2[i] = arr2[i] + 1;
+	// 		}
+	// 		j++;
+	// 	}
+	// 	i++;
+	// }
+	// new_num *first_num = me;
+	// i = 0;
+	// //print_lst(me);
+	// while (me->next_num != first_num)
+	// {
+	// 	me->data = arr2[i];
+	// 	me = me->next_num;
+	// 	i++; 
+	// }
+	// me->data = arr2[i];
+	// me = me->next_num;
 	//print_lst(me);
 	// printf("%d", (me->next_num)->data);
 	// s_action(&me);
@@ -491,29 +514,34 @@ int main(int ac, char **av)
 	// 	j = j * 10;
 	// }
 	// print_lst(me);
-	radix_sort(&me, &lst, 1, len);
+	// radix_sort(&me, &lst, 1, len);
+	norm_sort(&me, &lst, len);
 	//print_lst(me);
-	if (!me)
-		me = lst;
-	lst = NULL;
-	i = 0;
-	while (me != NULL)
-	{
-		i = 0;
-		while (i < len)
-		{
-			if (arr2[i] == me->data)
-			{
-				me->data = arr1[i];
-				p_action(&me, &lst);
-				r_action(&lst);
-				if (me == NULL)
-					break;
-			}
-			i++;
-		}
-	}
-	//print_lst(lst);
+
+
+	// if (!me)
+	// 	me = lst;
+	// lst = NULL;
+	// i = 0;
+	// while (me != NULL)
+	// {
+	// 	i = 0;
+	// 	while (i < len)
+	// 	{
+	// 		if (arr2[i] == me->data)
+	// 		{
+	// 			me->data = arr1[i];
+	// 			p_action(&me, &lst);
+	// 			r_action(&lst);
+	// 			if (me == NULL)
+	// 				break;
+	// 		}
+	// 		i++;
+	// 	}
+	// }
+
+
+	print_lst(lst);
 	// printf("%d", -3 % 2);
 	//printf("%d", is_sorted_list(me, len));
 	//p_action(&lst, &me);

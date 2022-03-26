@@ -394,30 +394,52 @@ void radix_sort(new_num **l_a, new_num **l_b, int r, int len)
 
 void norm_sort(new_num **l_a, new_num **l_b, int len)
 {
+	int j = 0;
 	while (*l_a != NULL)
 	{
 		if	(*l_b == NULL)
+		{
 			p_action(l_a, l_b);
+			j++;
+		}
 		else if ((*l_a)->data <= (*l_b)->data)
 		{
-			while ((*l_b)->data == (*l_b)->next_num->data && *l_b != (*l_b)->prev_num)
+			while ((*l_a)->data < (*l_b)->prev_num->data && *l_b != (*l_b)->prev_num && (*l_b)->data >= (*l_b)->prev_num->data)
+			{
+				j++;
 				rr_action(l_b);
-			while ((*l_a)->data < (*l_b)->prev_num->data && (*l_b)->data > (*l_b)->prev_num->data)
-				rr_action(l_b);
+				while ((*l_b)->data == (*l_b)->prev_num->data && *l_b != (*l_b)->prev_num)
+				{
+					rr_action(l_b);
+					j++;
+				}
+			}
 			p_action(l_a, l_b);
 		}
 		else
 		{
-			while ((*l_b)->data == (*l_b)->next_num->data && *l_b != (*l_b)->next_num)
+			
+			while ((*l_a)->data > (*l_b)->next_num->data && *l_b != (*l_b)->next_num && (*l_b)->data <= (*l_b)->next_num->data)
+			{
+				j++;
 				r_action(l_b);
-			while ((*l_a)->data > (*l_b)->next_num->data && (*l_b)->data < (*l_b)->next_num->data && *l_b != (*l_b)->next_num)
-				r_action(l_b);
+				while ((*l_b)->data == (*l_b)->next_num->data && *l_b != (*l_b)->next_num)
+				{
+					j++;
+					r_action(l_b);
+				}	
+			}
+			j = j + 2;
 			r_action(l_b);
 			p_action(l_a, l_b);
 		}
 	}
 	while (!is_sorted_list(*l_b, len))
+	{
+		j++;
 		r_action(l_b);
+	}
+	printf("********%d*****", j);
 }
 
 int get_max(new_num *lst)

@@ -6,7 +6,7 @@
 /*   By: mkaruvan <mkaruvan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 11:59:02 by mkaruvan          #+#    #+#             */
-/*   Updated: 2022/03/27 06:40:37 by mkaruvan         ###   ########.fr       */
+/*   Updated: 2022/03/27 08:00:03 by mkaruvan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -262,6 +262,7 @@ int ft_lstsize(new_num *lst)
 
 void s_action(new_num **lst)
 {
+	write(1, "sa \n", 4);
 	int temp1;
 	int temp2;
 	temp1 = (*lst)->data;
@@ -478,20 +479,16 @@ void print_lst(new_num *lst)
 }
 void three_sort(new_num **l_a)
 {
-	if(((*l_a)->data < (*l_a)->next_num->data) && 
-		((*l_a)->data < (*l_a)->next_num->next_num->data))
+	if (((*l_a)->data < (*l_a)->next_num->data) && ((*l_a)->data < (*l_a)->next_num->next_num->data))
 	{
 		s_action (l_a);
 		r_action (l_a);
 	}
-	else if ((*l_a)->data > (*l_a)->next_num->data && 
-		((*l_a)->data < (*l_a)->next_num->next_num->data))
-		rr_action(l_a);
-	else if ((*l_a)->data < (*l_a)->next_num->data && 
-		(*l_a)->data > (*l_a)->next_num->next_num->data)
+	else if ((*l_a)->data > (*l_a)->next_num->data && ((*l_a)->data < (*l_a)->next_num->next_num->data))
 		s_action(l_a);
-	else if ((*l_a)->data > (*l_a)->next_num->data && 
-		(*l_a)->data > (*l_a)->next_num->next_num->data)
+	else if ((*l_a)->data < (*l_a)->next_num->data && (*l_a)->data > (*l_a)->next_num->next_num->data)
+		rr_action(l_a);
+	else if ((*l_a)->data > (*l_a)->next_num->data && (*l_a)->data > (*l_a)->next_num->next_num->data)
 	{	
 		if ((*l_a)->next_num->data > (*l_a)->next_num->next_num->data)
 			rr_action(l_a);
@@ -502,13 +499,57 @@ void three_sort(new_num **l_a)
 		}
 	}
 }
-void small_sort(new_num **l_a, new_num **l_b, int len)
+void four_sort(new_num **l_a, new_num **l_b, int len)
 {
-	while (len > 3)
+	int min = get_min(*l_a);
+
+	if (len == 4)
 	{
-		
+		if (min == (*l_a)->next_num->data)
+			s_action(l_a);
+		else if (min == (*l_a)->next_num->next_num->data)
+		{
+			r_action(l_a);
+			s_action(l_a);
+		}
+		else if (min == (*l_a)->prev_num->data)
+			rr_action(l_a);
+		p_action(l_a, l_b);
 	}
 	three_sort(l_a);
+}
+void five_sort(new_num **l_a, new_num **l_b, int len)
+{
+	int min = get_min(*l_a);
+	
+	if (len == 5)
+	{
+		if (min == (*l_a)->next_num->data)
+			s_action(l_a);
+		else if (min == (*l_a)->next_num->next_num->data)
+		{
+			r_action(l_a);
+			s_action(l_a);
+		}
+		else if (min == (*l_a)->prev_num->data)
+			rr_action(l_a);
+		else if (min == (*l_a)->prev_num->prev_num->data)
+		{
+			rr_action(l_a);
+			s_action(l_a);
+		}
+		p_action(l_a, l_b);
+		len--;
+	}
+	four_sort(l_a, l_b, len);
+}
+void sorter(new_num **l_a, new_num **l_b, int len)
+{
+	
+}
+void check_valid(char **av)
+{
+	
 }
 int main(int ac, char **av)
 {
@@ -585,11 +626,16 @@ int main(int ac, char **av)
 	// }
 	// print_lst(me);
 	// radix_sort(&me, &lst, 1, len);
+	printf("%d", get_min(me));
 	if (!is_sorted_list(me, len) && len > 5)
 		norm_sort(&me, &lst, len);
 	else if (!is_sorted_list(me,len))
-		small_sort(&me, &lst, len);
-	//print_lst(me);
+	{
+		five_sort(&me, &lst, len);
+		while (lst != NULL)
+			p_action(&lst, &me);
+	}
+	print_lst(me);
 
 
 	// if (!me)
@@ -613,8 +659,8 @@ int main(int ac, char **av)
 	// 	}
 	// }
 
-	if (!me)
-		print_lst(lst);
+	// if (!me)
+	// 	print_lst(lst);
 	// printf("%d", -3 % 2);
 	//printf("%d", is_sorted_list(me, len));
 	//p_action(&lst, &me);

@@ -6,7 +6,7 @@
 /*   By: mkaruvan <mkaruvan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 11:59:02 by mkaruvan          #+#    #+#             */
-/*   Updated: 2022/03/26 12:12:53 by mkaruvan         ###   ########.fr       */
+/*   Updated: 2022/03/27 06:40:37 by mkaruvan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -476,6 +476,40 @@ void print_lst(new_num *lst)
 		lst = lst->next_num;
 	}
 }
+void three_sort(new_num **l_a)
+{
+	if(((*l_a)->data < (*l_a)->next_num->data) && 
+		((*l_a)->data < (*l_a)->next_num->next_num->data))
+	{
+		s_action (l_a);
+		r_action (l_a);
+	}
+	else if ((*l_a)->data > (*l_a)->next_num->data && 
+		((*l_a)->data < (*l_a)->next_num->next_num->data))
+		rr_action(l_a);
+	else if ((*l_a)->data < (*l_a)->next_num->data && 
+		(*l_a)->data > (*l_a)->next_num->next_num->data)
+		s_action(l_a);
+	else if ((*l_a)->data > (*l_a)->next_num->data && 
+		(*l_a)->data > (*l_a)->next_num->next_num->data)
+	{	
+		if ((*l_a)->next_num->data > (*l_a)->next_num->next_num->data)
+			rr_action(l_a);
+		else
+		{
+			s_action(l_a);
+			rr_action(l_a);
+		}
+	}
+}
+void small_sort(new_num **l_a, new_num **l_b, int len)
+{
+	while (len > 3)
+	{
+		
+	}
+	three_sort(l_a);
+}
 int main(int ac, char **av)
 {
 	int i;
@@ -551,8 +585,10 @@ int main(int ac, char **av)
 	// }
 	// print_lst(me);
 	// radix_sort(&me, &lst, 1, len);
-	if (!is_sorted_list(me, len))
+	if (!is_sorted_list(me, len) && len > 5)
 		norm_sort(&me, &lst, len);
+	else if (!is_sorted_list(me,len))
+		small_sort(&me, &lst, len);
 	//print_lst(me);
 
 

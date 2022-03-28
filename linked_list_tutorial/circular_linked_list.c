@@ -6,7 +6,7 @@
 /*   By: mkaruvan <mkaruvan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 11:59:02 by mkaruvan          #+#    #+#             */
-/*   Updated: 2022/03/27 08:00:03 by mkaruvan         ###   ########.fr       */
+/*   Updated: 2022/03/27 18:01:57 by mkaruvan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 typedef struct nums
 {
     int data;
+	int rank;
     struct nums *next_num;
     struct nums *prev_num;
 } new_num;
@@ -249,11 +250,11 @@ int ft_lstsize(new_num *lst)
 	new_num *num_first = lst;
 	if (lst == NULL)
 		return (0);
-	printf("* %d  ", lst->data);
+	//printf("* %d  ", lst->data);
 	lst = lst->next_num;
 	while (lst != num_first)
 	{
-		printf("%d  ", lst->data);
+		//printf("%d  ", lst->data);
 		lst = lst->next_num;
 		i++;
 	}
@@ -262,7 +263,7 @@ int ft_lstsize(new_num *lst)
 
 void s_action(new_num **lst)
 {
-	write(1, "sa \n", 4);
+	write(1, "sa\n", 3);
 	int temp1;
 	int temp2;
 	temp1 = (*lst)->data;
@@ -295,9 +296,10 @@ void delete_cond(new_num **from)
     }
 }
 
-void p_action(new_num **src, new_num **dst)
+void p_action(new_num **src, new_num **dst, char *str)
 {
-	write(1, "pa \n", 4);
+	write(1, str, ft_strlen(str));
+	write(1, "\n", 1);
     new_num *save;
     new_num *stock;
 
@@ -320,15 +322,17 @@ void p_action(new_num **src, new_num **dst)
     }
 }
 
-void r_action(new_num **lst)
+void r_action(new_num **lst, char *str)
 {
-	write(1, "rb \n", 4);
+	write(1, str, ft_strlen(str));
+	write(1, "\n", 1);
 	(*lst) = (*lst)->next_num;
 }
 
-void rr_action(new_num **lst)
+void rr_action(new_num **lst, char *str)
 {
-	write(1, "rrb \n", 5);
+	write(1, str, ft_strlen(str));
+	write(1, "\n", 1);
 	(*lst) = (*lst)->prev_num;
 }
 
@@ -362,51 +366,52 @@ int get_min(new_num *lst)
 	}
 	return temp;
 }
-void radix_sort(new_num **l_a, new_num **l_b, int r, int len)
-{
-	// for (int j = 1; j <= len; j++) 
-	int k;
-	int i;
 
-	k = 0;
-	i = 0;
-	int j = 0;
-	new_num *first_num = (*l_a);
-	while ((*l_a) != NULL)
-	{
-		int temp = (*l_a)->data;
-		temp /= r;
-        if (temp % 10 == i)
-		{
-			if (*l_a == first_num)
-			{
-				first_num = (*l_a)->next_num;
-			}
-            p_action(l_a, l_b);
-			//write (1, " pa rb ", 6);
-            r_action(l_b);
-			j = j + 2;
-            k++;
-			len--;
-        }
-        else
-		{
-            	r_action(l_a);
-				//write (1, " ra ", 6);
-				j++;
-        }
-		if (*l_a == first_num && i < 10  && temp % 10 != i)
-		{
-			i++;
-		}
+// void radix_sort(new_num **l_a, new_num **l_b, int r, int len)
+// {
+// 	// for (int j = 1; j <= len; j++) 
+// 	int k;
+// 	int i;
+
+// 	k = 0;
+// 	i = 0;
+// 	int j = 0;
+// 	new_num *first_num = (*l_a);
+// 	while ((*l_a) != NULL)
+// 	{
+// 		int temp = (*l_a)->data;
+// 		temp /= r;
+//         if (temp % 10 == i)
+// 		{
+// 			if (*l_a == first_num)
+// 			{
+// 				first_num = (*l_a)->next_num;
+// 			}
+//             p_action(l_a, l_b);
+// 			//write (1, " pa rb ", 6);
+//             r_action(l_b);
+// 			j = j + 2;
+//             k++;
+// 			len--;
+//         }
+//         else
+// 		{
+//             	r_action(l_a);
+// 				//write (1, " ra ", 6);
+// 				j++;
+//         }
+// 		if (*l_a == first_num && i < 10  && temp % 10 != i)
+// 		{
+// 			i++;
+// 		}
 		
-    }printf("*** %d ***", j);
-    if (*l_b != NULL && !is_sorted_list(*l_b, k)) {
-		len = k;
-		r = r * 10;
-        radix_sort(l_b, l_a, r, len);
-    }
-}
+//     }printf("*** %d ***", j);
+//     if (*l_b != NULL && !is_sorted_list(*l_b, k)) {
+// 		len = k;
+// 		r = r * 10;
+//         radix_sort(l_b, l_a, r, len);
+//     }
+// }
 
 void norm_sort(new_num **l_a, new_num **l_b, int len)
 {
@@ -415,7 +420,7 @@ void norm_sort(new_num **l_a, new_num **l_b, int len)
 	{
 		if	(*l_b == NULL)
 		{
-			p_action(l_a, l_b);
+			p_action(l_a, l_b, "pb");
 			j++;
 		}
 		else if ((*l_a)->data <= (*l_b)->data)
@@ -425,9 +430,9 @@ void norm_sort(new_num **l_a, new_num **l_b, int len)
 				(*l_b)->prev_num->data)
 			{
 				j++;
-				rr_action(l_b);
+				rr_action(l_b, "rrb");
 			}
-			p_action(l_a, l_b);
+			p_action(l_a, l_b, "pb");
 		}
 		else
 		{
@@ -436,19 +441,66 @@ void norm_sort(new_num **l_a, new_num **l_b, int len)
 			 (*l_b)->next_num->data)
 			{
 				j++;
-				r_action(l_b);
+				r_action(l_b, "rb");
 			}
 			j = j + 2;
-			r_action(l_b);
-			p_action(l_a, l_b);
+			r_action(l_b, "rb");
+			p_action(l_a, l_b, "pb");
 		}
 	}
 	while (!is_sorted_list(*l_b, len))
 	{
 		j++;
-		r_action(l_b);
+		r_action(l_b, "rb");
 	}
-	printf("********%d*****", j);
+}
+
+void	best_rotate(new_num **lst, int pos,	int do_a)
+{
+	int size;
+
+	size = ft_lstsize(*lst);
+	if (pos < size / 2)
+	{
+		while (pos > 0)
+		{
+			if (do_a)
+				r_action(lst, "ra");
+			else
+				r_action(lst, "rb");
+			pos--;
+		}
+	}
+	else
+	{
+		while (pos < size)
+		{
+			if (do_a)
+				rr_action(lst, "rra");
+			else
+				rr_action(lst, "rrb");
+			pos++;
+		}
+	}
+}
+
+int find_less(new_num *lst, int part)
+{
+	int	i;
+	int	z;
+	new_num *new;
+
+	i = 0;
+	new = lst;
+	z = new->rank;
+	while (new->next_num->rank != z)
+	{
+		if (new->rank <= part)
+			break;
+		++i;
+		new = new->next_num;
+	}
+	return (i);
 }
 
 int get_max(new_num *lst)
@@ -466,6 +518,67 @@ int get_max(new_num *lst)
 	}
 	return temp;
 }
+
+int	find_biggest(new_num *lst)
+{
+	int	i;
+	int	largest;
+	new_num	*new;
+
+	new = lst;
+	i = 0;
+	largest = get_max(lst);
+	while (1)
+	{
+		if (new->data == largest)
+			break;
+		++i;
+		new = new->next_num;
+	}
+	return (i);
+}
+
+void	push_back_all(new_num **a, new_num **b, int i)
+{
+	int	pos;
+	while (i > 0)
+	{
+		pos = find_biggest(*b);
+		best_rotate(b, pos, 0);
+		p_action(b, a, "pa");
+		i--;
+	}
+}
+
+void	big_sort(new_num **a, new_num **b)
+{
+	int	size;
+	int	part;
+	int	i;
+	int	pos;
+	
+	size = ft_lstsize(*a);
+	part = 0;
+	i = 1;
+	while (*a != NULL)
+	{
+		if (size <= 100)
+			part += size / 5;
+		else
+			part += size / 11 - 2;
+		while (i <= part)
+		{
+			if (*a == NULL)
+				break;
+			pos = find_less(*a, part);
+			best_rotate(a, pos, 1);
+			p_action(a, b, "pb");
+			++i;
+		}
+	}
+	push_back_all(a, b, i - 1);
+}
+
 void print_lst(new_num *lst)
 {
 	new_num *lst2 = lst;
@@ -477,28 +590,45 @@ void print_lst(new_num *lst)
 		lst = lst->next_num;
 	}
 }
+
+void print_lst_with_rank(new_num *lst)
+{
+	new_num *lst2 = lst;
+	printf("%d %d \n", lst->data, lst->rank);
+	lst = lst->next_num;
+	while (lst != lst2)
+	{
+		printf("%d %d \n", lst->data, lst->rank);
+		lst = lst->next_num;
+	}
+}
+
 void three_sort(new_num **l_a)
 {
-	if (((*l_a)->data < (*l_a)->next_num->data) && ((*l_a)->data < (*l_a)->next_num->next_num->data))
+	if (((*l_a)->data < (*l_a)->next_num->data) && ((*l_a)->data < (*l_a)->next_num->next_num->data)
+		&& ((*l_a)->next_num->data > (*l_a)->next_num->next_num->data))
 	{
 		s_action (l_a);
-		r_action (l_a);
+		r_action (l_a, "ra");
 	}
-	else if ((*l_a)->data > (*l_a)->next_num->data && ((*l_a)->data < (*l_a)->next_num->next_num->data))
+	else if ((*l_a)->data > (*l_a)->next_num->data && ((*l_a)->data < (*l_a)->next_num->next_num->data)
+		&& ((*l_a)->next_num->data < (*l_a)->next_num->next_num->data))
 		s_action(l_a);
-	else if ((*l_a)->data < (*l_a)->next_num->data && (*l_a)->data > (*l_a)->next_num->next_num->data)
-		rr_action(l_a);
+	else if ((*l_a)->data < (*l_a)->next_num->data && (*l_a)->data > (*l_a)->next_num->next_num->data
+		&& ((*l_a)->next_num->data > (*l_a)->next_num->next_num->data))
+		rr_action(l_a, "rra");
 	else if ((*l_a)->data > (*l_a)->next_num->data && (*l_a)->data > (*l_a)->next_num->next_num->data)
 	{	
-		if ((*l_a)->next_num->data > (*l_a)->next_num->next_num->data)
-			rr_action(l_a);
+		if ((*l_a)->next_num->data < (*l_a)->next_num->next_num->data)
+			r_action(l_a, "ra");
 		else
 		{
 			s_action(l_a);
-			rr_action(l_a);
+			rr_action(l_a, "rra");
 		}
 	}
 }
+
 void four_sort(new_num **l_a, new_num **l_b, int len)
 {
 	int min = get_min(*l_a);
@@ -509,15 +639,16 @@ void four_sort(new_num **l_a, new_num **l_b, int len)
 			s_action(l_a);
 		else if (min == (*l_a)->next_num->next_num->data)
 		{
-			r_action(l_a);
-			s_action(l_a);
+			r_action(l_a, "ra");
+			s_action(l_a );
 		}
 		else if (min == (*l_a)->prev_num->data)
-			rr_action(l_a);
-		p_action(l_a, l_b);
+			rr_action(l_a, "rra");
+		p_action(l_a, l_b, "pb");
 	}
 	three_sort(l_a);
 }
+
 void five_sort(new_num **l_a, new_num **l_b, int len)
 {
 	int min = get_min(*l_a);
@@ -528,21 +659,23 @@ void five_sort(new_num **l_a, new_num **l_b, int len)
 			s_action(l_a);
 		else if (min == (*l_a)->next_num->next_num->data)
 		{
-			r_action(l_a);
+			r_action(l_a, "ra");
 			s_action(l_a);
 		}
 		else if (min == (*l_a)->prev_num->data)
-			rr_action(l_a);
+			rr_action(l_a, "rra");
 		else if (min == (*l_a)->prev_num->prev_num->data)
 		{
-			rr_action(l_a);
-			s_action(l_a);
+			rr_action(l_a, "rra");
+			rr_action(l_a, "rra");
 		}
-		p_action(l_a, l_b);
+		p_action(l_a, l_b, "pb");
 		len--;
 	}
 	four_sort(l_a, l_b, len);
 }
+
+
 void sorter(new_num **l_a, new_num **l_b, int len)
 {
 	
@@ -551,6 +684,48 @@ void check_valid(char **av)
 {
 	
 }
+void rank_list (int len, char **av, new_num **lst)
+{
+	int	i;
+	int	*arr1;
+	int	*arr2;
+	
+	i = 0;
+	arr1 = malloc(sizeof(int) * len);
+	arr2 = malloc(sizeof(int) * len);
+	while (i < len)
+	{
+		arr1[i] = ft_atoi(av[i + 1]);
+		arr2[i++] = 0;
+	}
+	i = 0;
+	while (i < len)
+	{
+		int j = 0;
+		while (j < len)
+		{
+			if (arr1[i] > arr1[j] && i != j)
+			{
+				arr2[i] = arr2[i] + 1;
+			}
+			j++;
+		}
+		i++;
+	}
+	new_num *first_num = (*lst);
+	i = 0;
+	while ((*lst)->next_num != first_num)
+	{
+		(*lst)->rank = arr2[i];
+		(*lst) = (*lst)->next_num;
+		i++; 
+	}
+	// printf ("%d %d %d\n", arr1[i], (*lst)->rank, (*lst)->data);
+	(*lst)->rank = arr2[i];
+	(*lst) = (*lst)->next_num;
+	
+}
+
 int main(int ac, char **av)
 {
 	int i;
@@ -558,41 +733,8 @@ int main(int ac, char **av)
 	i = 0;
 	int len = ac - 1;
 	new_num *me = set_num_list(av);
-	// int *arr1;
-
-	// int *arr2;
-	// arr1 = malloc(sizeof(int) * len);
-	// arr2 = malloc(sizeof(int) * len);
-	// while (i < len)
-	// {
-	// 	arr1[i] = ft_atoi(av[i + 1]);
-	// 	arr2[i++] = 0;
-	// }
-	// i = 0;
-	// while (i < len)
-	// {
-	// 	int j = 0;
-	// 	while (j < len)
-	// 	{
-	// 		if (arr1[i] > arr1[j] && i != j)
-	// 		{
-	// 			arr2[i] = arr2[i] + 1;
-	// 		}
-	// 		j++;
-	// 	}
-	// 	i++;
-	// }
-	// new_num *first_num = me;
-	// i = 0;
-	// //print_lst(me);
-	// while (me->next_num != first_num)
-	// {
-	// 	me->data = arr2[i];
-	// 	me = me->next_num;
-	// 	i++; 
-	// }
-	// me->data = arr2[i];
-	// me = me->next_num;
+	rank_list(len, av, &me);
+	//print_lst_with_rank(me);
 	//print_lst(me);
 	// printf("%d", (me->next_num)->data);
 	// s_action(&me);
@@ -626,18 +768,15 @@ int main(int ac, char **av)
 	// }
 	// print_lst(me);
 	// radix_sort(&me, &lst, 1, len);
-	printf("%d", get_min(me));
 	if (!is_sorted_list(me, len) && len > 5)
-		norm_sort(&me, &lst, len);
+		big_sort(&me, &lst);
 	else if (!is_sorted_list(me,len))
 	{
 		five_sort(&me, &lst, len);
 		while (lst != NULL)
-			p_action(&lst, &me);
+			p_action(&lst, &me, "pa");
 	}
-	print_lst(me);
-
-
+	//print_lst(me);
 	// if (!me)
 	// 	me = lst;
 	// lst = NULL;
@@ -658,17 +797,6 @@ int main(int ac, char **av)
 	// 		i++;
 	// 	}
 	// }
-
 	// if (!me)
 	// 	print_lst(lst);
-	// printf("%d", -3 % 2);
-	//printf("%d", is_sorted_list(me, len));
-	//p_action(&lst, &me);
-	// printf(" \n* %d", ft_lstsize(me));
-	// radix_sort(&me);
-	//radix_sort(&me, 1);
-	// printf("%d", ft_lstsize(me));
-	 // printf("%d", me->data);
-	// ft_lstadd_front(&ne, ne1);
-	// printf("%d", (ne->next_num)->data);
 }

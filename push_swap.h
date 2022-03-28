@@ -4,6 +4,10 @@
 # include <stdio.h>
 # include <stdlib.h>
 
+# define FIRST_NUM (*l_a)->data
+# define SECOND_NUM (*l_a)->next_num->data
+# define THIRD_NUM (*l_a)->prev_num->data
+
 typedef struct nums
 {
     int data;
@@ -26,5 +30,6 @@ void rr_action(new_num **lst, char *str);
 int get_max(new_num *lst);
 void rank_list (int len, char **av, new_num **lst);
 void five_sort(new_num **l_a, new_num **l_b, int len);
+int get_min(new_num *lst);
 
 #endif

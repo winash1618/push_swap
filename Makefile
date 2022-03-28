@@ -23,11 +23,12 @@ CC = gcc
 
 FLAGS = -Wall -Wextra -Werror
 
-all: ($NAME_M)
+all: $(NAME_M)
 
 $(NAME_M):
 	@echo "$(WHT)Compiling push_swap...$(EOC)"
-	@$(CC) $(FLAGS) -c $(SRC1)
+	@$(CC) $(FLAGS) -c $(SRC_M)
+	@$(CC) $(FLAGS) -o $(NAME_M) $(OBJ)
 	@mkdir obj
 	@mv $(OBJ) ./obj
 	@echo "$(GREEN)push_swap build completed.$(EOC)"

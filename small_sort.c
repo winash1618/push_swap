@@ -1,11 +1,11 @@
 #include "push_swap.h"
 
-void two_sort(new_num **l_a)
+static void two_sort(new_num **l_a)
 {
 	if ((*l_a)->data > (*l_a)->next_num->data)
 		s_action(l_a);
 }
-void three_sort(new_num **l_a, new_num **l_b, int len)
+static void three_sort(new_num **l_a, new_num **l_b, int len)
 {
 	int min = get_min(*l_a);
 
@@ -20,7 +20,7 @@ void three_sort(new_num **l_a, new_num **l_b, int len)
 	two_sort(l_a);
 }
 
-void four_sort(new_num **l_a, new_num **l_b, int len)
+static void four_sort(new_num **l_a, new_num **l_b, int len)
 {
 	int min = get_min(*l_a);
 

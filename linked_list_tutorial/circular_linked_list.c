@@ -6,7 +6,7 @@
 /*   By: mkaruvan <mkaruvan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 11:59:02 by mkaruvan          #+#    #+#             */
-/*   Updated: 2022/03/27 18:01:57 by mkaruvan         ###   ########.fr       */
+/*   Updated: 2022/03/29 14:09:46 by mkaruvan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -675,15 +675,6 @@ void five_sort(new_num **l_a, new_num **l_b, int len)
 	four_sort(l_a, l_b, len);
 }
 
-
-void sorter(new_num **l_a, new_num **l_b, int len)
-{
-	
-}
-void check_valid(char **av)
-{
-	
-}
 void rank_list (int len, char **av, new_num **lst)
 {
 	int	i;
@@ -724,6 +715,38 @@ void rank_list (int len, char **av, new_num **lst)
 	(*lst)->rank = arr2[i];
 	(*lst) = (*lst)->next_num;
 	
+}
+
+void quick_sort(new_num **l_a, new_num **l_b, int len)
+{
+	while (ft_lstsize(*l_a) != len / 2)
+	{
+		if ((*l_a)->data == get_min(*l_a))
+		{
+			p_action(l_a, l_b, "pb");
+		}
+		else
+		{
+			r_action(l_a, "ra");
+		}
+	}
+	int temp = len;
+	len = len/2;
+	if (len > 2)
+	{
+		quick_sort(l_a, l_b, len);
+		quick_sort(l_b, l_a, len);
+	}
+	if ((*l_a)->rank > (*l_a)->next_num->rank)
+		s_action(l_a);
+	if ((*l_b)->rank < (*l_b)->next_num->rank)
+		s_action(l_b);
+	temp -= len;
+	while (temp-- && (*l_b) != NULL)
+	{	//	r_action(l_a, "ra");
+		//is_rev_sorted_list(*l_b, len)
+		p_action(l_b, l_a, "pa");
+	}
 }
 
 int main(int ac, char **av)
@@ -769,7 +792,7 @@ int main(int ac, char **av)
 	// print_lst(me);
 	// radix_sort(&me, &lst, 1, len);
 	if (!is_sorted_list(me, len) && len > 5)
-		big_sort(&me, &lst);
+		quick_sort(&me, &lst, len);
 	else if (!is_sorted_list(me,len))
 	{
 		five_sort(&me, &lst, len);

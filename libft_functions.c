@@ -1,5 +1,16 @@
-#include "push_swap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft_functions.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mkaruvan <mkaruvan@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/28 08:56:21 by mkaruvan          #+#    #+#             */
+/*   Updated: 2022/03/29 16:36:28 by mkaruvan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "push_swap.h"
 
 size_t	ft_strlen(const char *s)
 {
@@ -16,7 +27,7 @@ size_t	ft_strlen(const char *s)
 
 int	ft_atoi(const char *str)
 {
-	int	count;
+	int				count;
 	unsigned int	sum;
 
 	count = 1;

@@ -1,35 +1,43 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mkaruvan <mkaruvan@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/28 08:56:54 by mkaruvan          #+#    #+#             */
+/*   Updated: 2022/03/30 06:38:57 by mkaruvan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
 
-# define FIRST_NUM (*l_a)->data
-# define SECOND_NUM (*l_a)->next_num->data
-# define THIRD_NUM (*l_a)->prev_num->data
-
 typedef struct nums
 {
-    int data;
-	int rank;
-    struct nums *next_num;
-    struct nums *prev_num;
-} new_num;
+	int			data;
+	int			rank;
+	struct nums	*next_num;
+	struct nums	*prev_num;
+}	t_new;
 
-void	big_sort(new_num **a, new_num **b);
-void delete_cond(new_num **from);
-new_num *set_num_list(char **arg);
-int ft_lstsize(new_num *lst);
+void	big_sort(t_new **a, t_new **b);
+void	delete_cond(t_new **from);
+t_new	*set_num_list(char **arg);
+int		ft_lstsize(t_new *lst);
 size_t	ft_strlen(const char *s);
-int	ft_atoi(const char *str);
-int is_sorted_list(new_num *lst, int len);
-void s_action(new_num **lst);
-void p_action(new_num **src, new_num **dst, char *str);
-void r_action(new_num **lst, char *str);
-void rr_action(new_num **lst, char *str);
-int get_max(new_num *lst);
-void rank_list (int len, char **av, new_num **lst);
-void five_sort(new_num **l_a, new_num **l_b, int len);
-int get_min(new_num *lst);
+int		ft_atoi(const char *str);
+int		is_sorted_list(t_new *lst, int len);
+void	s_action(t_new **lst);
+void	p_action(t_new **src, t_new **dst, char *str);
+void	r_action(t_new **lst, char *str);
+void	rr_action(t_new **lst, char *str);
+int		get_max(t_new *lst);
+void	rank_list(int len, char **av, t_new **lst);
+void	five_sort(t_new **l_a, t_new **l_b, int len);
+int		get_min(t_new *lst);
 
 #endif

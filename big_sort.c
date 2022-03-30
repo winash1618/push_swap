@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   big_sort.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mkaruvan <mkaruvan@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/28 08:55:45 by mkaruvan          #+#    #+#             */
+/*   Updated: 2022/03/30 07:13:58 by mkaruvan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-static void	best_rotate(new_num **lst, int pos,	int do_a)
+static void	best_rotate(t_new **lst, int pos,	int do_a)
 {
-	int size;
+	int	size;
 
 	size = ft_lstsize(*lst);
 	if (pos < size / 2)
@@ -29,11 +41,11 @@ static void	best_rotate(new_num **lst, int pos,	int do_a)
 	}
 }
 
-static int find_less(new_num *lst, int part)
+static int	find_less(t_new *lst, int part)
 {
-	int	i;
-	int	z;
-	new_num *new;
+	int		i;
+	int		z;
+	t_new	*new;
 
 	i = 0;
 	new = lst;
@@ -41,18 +53,18 @@ static int find_less(new_num *lst, int part)
 	while (new->next_num->rank != z)
 	{
 		if (new->rank <= part)
-			break;
+			break ;
 		++i;
 		new = new->next_num;
 	}
 	return (i);
 }
 
-static int	find_biggest(new_num *lst)
+static int	find_biggest(t_new *lst)
 {
-	int	i;
-	int	largest;
-	new_num	*new;
+	int		i;
+	int		largest;
+	t_new	*new;
 
 	new = lst;
 	i = 0;
@@ -60,16 +72,17 @@ static int	find_biggest(new_num *lst)
 	while (1)
 	{
 		if (new->data == largest)
-			break;
+			break ;
 		++i;
 		new = new->next_num;
 	}
 	return (i);
 }
 
-void	push_back_all(new_num **a, new_num **b, int i)
+void	push_back_all(t_new **a, t_new **b, int i)
 {
 	int	pos;
+
 	while (i > 0)
 	{
 		pos = find_biggest(*b);
@@ -79,13 +92,13 @@ void	push_back_all(new_num **a, new_num **b, int i)
 	}
 }
 
-void	big_sort(new_num **a, new_num **b)
+void	big_sort(t_new **a, t_new **b)
 {
 	int	size;
 	int	part;
 	int	i;
 	int	pos;
-	
+
 	size = ft_lstsize(*a);
 	part = 0;
 	i = 1;
@@ -98,7 +111,7 @@ void	big_sort(new_num **a, new_num **b)
 		while (i <= part)
 		{
 			if (*a == NULL)
-				break;
+				break ;
 			pos = find_less(*a, part);
 			best_rotate(a, pos, 1);
 			p_action(a, b, "pb");

@@ -6,7 +6,7 @@
 /*   By: mkaruvan <mkaruvan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 11:59:02 by mkaruvan          #+#    #+#             */
-/*   Updated: 2022/03/29 14:09:46 by mkaruvan         ###   ########.fr       */
+/*   Updated: 2022/03/31 10:42:26 by mkaruvan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -264,14 +264,17 @@ int ft_lstsize(new_num *lst)
 void s_action(new_num **lst)
 {
 	write(1, "sa\n", 3);
-	int temp1;
-	int temp2;
-	temp1 = (*lst)->data;
+	int i[4];
+	i[0] = (*lst)->data;
+	i[2] = (*lst)->rank;
 	*lst = (*lst)->next_num;
-	temp2 = (*lst)->data;
-	(*lst)->data = temp1;
+	i[1] = (*lst)->data;
+	i[3] = (*lst)->rank;
+	(*lst)->data = i[0];
+	(*lst)->rank = i[2];
 	*lst = (*lst)->prev_num;
-	(*lst)->data = temp2;
+	(*lst)->data = i[1];
+	(*lst)->rank = i[3];
 }
 
 void delete_num(new_num **lst)
@@ -717,19 +720,77 @@ void rank_list (int len, char **av, new_num **lst)
 	
 }
 
+int	ft_isdigit(int c)
+{
+	if (c >= 48 && c <= 57)
+		return (1);
+	return (0);
+}
+
+int	is_string_number(char **av, int len)
+{
+	int i;
+	int j;
+	int k;
+
+	i = 1;
+	j = 0;
+	k = 0;
+	while (len--)
+	{
+		j = 0;
+		while (av[i][j] != '\0')
+		{
+			if (!ft_isdigit(av[i][j]))
+			{
+				if (!(av[i][j] == '-' && ft_isdigit(av[i][j + 1])))
+				{
+					k++;
+				}
+				else if (!((av[i][j] == '+') && ft_isdigit(av[i][j + 1])))
+				{
+					k++;
+				}
+			}
+			j++;
+			
+		}
+		i++;
+	}
+	if (k > 0)
+		return (0);
+	else
+		return (1);
+}
+
+int is_duplicate(new_num *lst, int len)
+{
+	new_num *dup;
+	size_t i;
+
+	dup = lst;
+	lst = lst->next_num;
+	while (dup != lst)
+	{
+		i += lst->rank;
+		lst = lst->next_num;
+	}
+	i++;
+	if (i != len*(len-1)/2)
+		return (1);
+	return (0);
+}
+
 void quick_sort(new_num **l_a, new_num **l_b, int len)
 {
-	while (ft_lstsize(*l_a) != len / 2)
+	while (ft_lstsize(*l_a) != len / 2 && *l_a != NULL)
 	{
 		if ((*l_a)->data == get_min(*l_a))
-		{
 			p_action(l_a, l_b, "pb");
-		}
 		else
-		{
 			r_action(l_a, "ra");
-		}
 	}
+	
 	int temp = len;
 	len = len/2;
 	if (len > 2)
@@ -737,14 +798,15 @@ void quick_sort(new_num **l_a, new_num **l_b, int len)
 		quick_sort(l_a, l_b, len);
 		quick_sort(l_b, l_a, len);
 	}
-	if ((*l_a)->rank > (*l_a)->next_num->rank)
-		s_action(l_a);
-	if ((*l_b)->rank < (*l_b)->next_num->rank)
-		s_action(l_b);
+	if (*l_a != NULL)
+		if ((*l_a)->rank > (*l_a)->next_num->rank)
+			s_action(l_a);
+	if (*l_b != NULL)
+		if ((*l_b)->rank < (*l_b)->next_num->rank && *l_b != NULL)
+			s_action(l_b);
 	temp -= len;
-	while (temp-- && (*l_b) != NULL)
-	{	//	r_action(l_a, "ra");
-		//is_rev_sorted_list(*l_b, len)
+	while (temp--)
+	{
 		p_action(l_b, l_a, "pa");
 	}
 }
@@ -757,6 +819,8 @@ int main(int ac, char **av)
 	int len = ac - 1;
 	new_num *me = set_num_list(av);
 	rank_list(len, av, &me);
+	printf("%d", is_string_number(av, len));
+	is_duplicate(me, len);
 	//print_lst_with_rank(me);
 	//print_lst(me);
 	// printf("%d", (me->next_num)->data);
@@ -791,15 +855,15 @@ int main(int ac, char **av)
 	// }
 	// print_lst(me);
 	// radix_sort(&me, &lst, 1, len);
-	if (!is_sorted_list(me, len) && len > 5)
-		quick_sort(&me, &lst, len);
-	else if (!is_sorted_list(me,len))
-	{
-		five_sort(&me, &lst, len);
-		while (lst != NULL)
-			p_action(&lst, &me, "pa");
-	}
-	//print_lst(me);
+	// if (!is_sorted_list(me, len) && len > 5)
+	// 	big_sort(&me, &lst);
+	// else if (!is_sorted_list(me,len))
+	// {
+	// 	five_sort(&me, &lst, len);
+	// 	while (lst != NULL)
+	// 		p_action(&lst, &me, "pa");
+	// }
+	// print_lst(me);
 	// if (!me)
 	// 	me = lst;
 	// lst = NULL;

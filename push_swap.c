@@ -6,7 +6,7 @@
 /*   By: mkaruvan <mkaruvan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 08:56:40 by mkaruvan          #+#    #+#             */
-/*   Updated: 2022/03/29 17:02:09 by mkaruvan         ###   ########.fr       */
+/*   Updated: 2022/03/31 16:40:42 by mkaruvan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,20 @@ int	main(int ac, char **av)
 
 	i = 0;
 	len = ac - 1;
-	me = set_num_list(av);
-	rank_list(len, av, &me);
-	lst = NULL;
-	if (!is_sorted_list(me, len) && len > 5)
-		big_sort(&me, &lst);
-	else if (!is_sorted_list(me, len))
-		five_sort(&me, &lst, len);
+	if (is_string_number(av, len))
+	{
+		if (is_integer(av, len))
+		{
+			me = set_num_list(av);
+			rank_list(len, av, &me);
+			lst = NULL;
+			if (!is_duplicate(me, len))
+			{
+				if (!is_sorted_list(me, len) && len > 5)
+					big_sort(&me, &lst);
+				else if (!is_sorted_list(me, len))
+					five_sort(&me, &lst, len);
+			}
+		}
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: mkaruvan <mkaruvan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 08:56:54 by mkaruvan          #+#    #+#             */
-/*   Updated: 2022/03/30 06:38:57 by mkaruvan         ###   ########.fr       */
+/*   Updated: 2022/03/31 12:04:52 by mkaruvan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,10 @@ int		get_max(t_new *lst);
 void	rank_list(int len, char **av, t_new **lst);
 void	five_sort(t_new **l_a, t_new **l_b, int len);
 int		get_min(t_new *lst);
+int		is_string_number(char **av, int len);
+int		ft_isdigit(int c);
+int		is_duplicate(t_new *lst, size_t len);
+int		is_integer(char **av, size_t len);
+int		ft_atoi_dup(const char *str);
 
 #endif

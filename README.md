@@ -1,5 +1,14 @@
 # push_swap
 
+## tips
+
+- inorder to run push_swap in docker
+- type start from push_swap directory
+- then do make re
+- valgrind ./push_swap 3 2 6 4
+- debugging gcc -g *.c
+- lldb ./push_swap 2 6 1 0 
+
 ## Resources
 - https://sharkigamers.github.io/pushswap_epitech_project/ They are explaining how to do this project using circular linked list.
 - https://www.geeksforgeeks.org/linked-list-set-1-introduction/ Linked list explanation.

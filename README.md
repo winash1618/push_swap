@@ -8,6 +8,9 @@
 - valgrind ./push_swap 3 2 6 4
 - debugging gcc -g *.c
 - lldb ./push_swap 2 6 1 0 
+- if you are using lldb do not run it with ./push_swap that is made by makefile its not working, i don't know why. 
+- for lldb use this command first: gcc -g push_swap*.c small_sort.c big_sort.c circular_linked_list_utils.c ft_split.c libft_functions.c
+- then lldb ./a.out 3 12 5 as normal
 
 ## Resources
 - https://sharkigamers.github.io/pushswap_epitech_project/ They are explaining how to do this project using circular linked list.

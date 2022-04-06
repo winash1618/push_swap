@@ -6,7 +6,7 @@
 /*   By: mkaruvan <mkaruvan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 08:56:21 by mkaruvan          #+#    #+#             */
-/*   Updated: 2022/03/31 11:58:52 by mkaruvan         ###   ########.fr       */
+/*   Updated: 2022/04/05 14:02:34 by mkaruvan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,30 @@ int	ft_atoi_dup(const char *str)
 		str++;
 	}
 	return (sum * count);
+}
+
+int	is_atoi_err(const char *str)
+{
+	int				count;
+	unsigned int	sum;
+
+	count = 1;
+	sum = 0;
+	while (*str == ' ' || *str == '\n' || *str == '\t' || *str == '\f'
+		|| *str == '\r' || *str == '\v')
+		str++;
+	if (*str == '-' || *str == '+')
+	{
+		if (*str == '-')
+			count = -count;
+		str++;
+	}
+	while (*str >= '0' && *str <= '9')
+	{
+		sum = sum * 10 + (*str - '0');
+		str++;
+	}
+	if (*str != '\0')
+		return (1);
+	return (0);
 }

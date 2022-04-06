@@ -6,7 +6,7 @@
 /*   By: mkaruvan <mkaruvan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 08:57:12 by mkaruvan          #+#    #+#             */
-/*   Updated: 2022/03/31 16:47:57 by mkaruvan         ###   ########.fr       */
+/*   Updated: 2022/04/02 07:11:38 by mkaruvan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,8 @@ int	is_integer(char **av, size_t len)
 	{
 		k = ft_atoi(av[i]);
 		if ((k == 0 || k == -1) && k != ft_atoi_dup(av[i]))
+			j++;
+		if (is_atoi_err(av[i]))
 			j++;
 		i++;
 	}

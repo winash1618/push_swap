@@ -6,7 +6,7 @@
 /*   By: mkaruvan <mkaruvan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 08:56:54 by mkaruvan          #+#    #+#             */
-/*   Updated: 2022/03/31 12:04:52 by mkaruvan         ###   ########.fr       */
+/*   Updated: 2022/04/05 14:03:31 by mkaruvan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,7 @@ int		ft_isdigit(int c);
 int		is_duplicate(t_new *lst, size_t len);
 int		is_integer(char **av, size_t len);
 int		ft_atoi_dup(const char *str);
+int		is_atoi_err(const char *str);
+char	**ft_split(char const *s, char c);
 
 #endif

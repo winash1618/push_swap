@@ -6,7 +6,7 @@
 /*   By: mkaruvan <mkaruvan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 08:57:35 by mkaruvan          #+#    #+#             */
-/*   Updated: 2022/03/29 17:42:20 by mkaruvan         ###   ########.fr       */
+/*   Updated: 2022/04/02 07:20:53 by mkaruvan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,14 @@ void	rank_list(int len, char **av, t_new **lst)
 	i = 0;
 	arr1 = malloc(sizeof(int) * len);
 	arr2 = malloc(sizeof(int) * len);
+	if (!arr1 && !arr2)
+		return ;
 	while (i < len)
 	{
 		arr1[i] = ft_atoi(av[i + 1]);
 		arr2[i++] = 0;
 	}
 	ranker(arr1, arr2, lst, len);
+	free(arr1);
+	free(arr2);
 }

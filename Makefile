@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mkaruvan <mkaruvan@student.42abudhabi.ae>  +#+  +:+       +#+         #
+#    By: mkaruvan <mkaruvan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/28 08:55:20 by mkaruvan          #+#    #+#              #
-#    Updated: 2022/03/28 08:55:25 by mkaruvan         ###   ########.fr        #
+#    Updated: 2022/04/05 15:20:11 by mkaruvan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ SRC_M = big_sort.c \
 		push_swap_operations.c \
 		push_swap_utils.c \
 		push_swap.c \
-		small_sort.c
+		small_sort.c \
+		ft_split.c
 
 HEADERS_M = push_swap.h
 
@@ -33,7 +34,7 @@ EOC = \033[1;0m
 
 CC = gcc
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -g -Wall -Wextra -Werror
 
 all: $(NAME_M)
 

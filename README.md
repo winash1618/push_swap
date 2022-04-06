@@ -1,5 +1,10 @@
 # push_swap
 
+## testers
+- https://github.com/o-reo/push_swap_visualizer
+- https://github.com/mharriso/school21-checklists/blob/master/ng_2_push_swap.pdf
+- https://github.com/lmalki-h/push_swap_tester
+
 ## tips
 
 - inorder to run push_swap in docker

@@ -6,7 +6,7 @@
 /*   By: mkaruvan <mkaruvan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 08:55:56 by mkaruvan          #+#    #+#             */
-/*   Updated: 2022/04/04 12:05:57 by mkaruvan         ###   ########.fr       */
+/*   Updated: 2022/04/09 12:28:36 by mkaruvan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	other_nums(char **arg, t_new **num_first,
 	while (arg[i] != NULL)
 	{
 		num_next = malloc(sizeof(t_new));
-		num_next->data = ft_atoi(arg[i]);
+		num_next->data = ft_atoi(arg[i], arg);
 		num_next->next_num = *num_first;
 		(*num)->next_num = num_next;
 		*num_last = *num;
@@ -55,7 +55,7 @@ t_new	*set_num_list(char **arg)
 	num = malloc(sizeof(t_new));
 	if (!num)
 		return (NULL);
-	num->data = ft_atoi(arg[1]);
+	num->data = ft_atoi(arg[1], arg);
 	num->prev_num = num;
 	num->next_num = num;
 	num_first = num;

@@ -6,7 +6,7 @@
 /*   By: mkaruvan <mkaruvan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 08:56:54 by mkaruvan          #+#    #+#             */
-/*   Updated: 2022/04/09 12:06:02 by mkaruvan         ###   ########.fr       */
+/*   Updated: 2022/04/09 12:26:52 by mkaruvan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	delete_cond(t_new **from);
 t_new	*set_num_list(char **arg);
 int		ft_lstsize(t_new *lst);
 size_t	ft_strlen(const char *s);
-int		ft_atoi(const char *str);
+int		ft_atoi(const char *str, char **av);
 int		is_sorted_list(t_new *lst, int len);
 void	s_action(t_new **lst);
 void	p_action(t_new **src, t_new **dst, char *str);
@@ -47,7 +47,7 @@ int		is_integer(char **av, size_t len);
 int		ft_atoi_dup(const char *str);
 int		is_atoi_err(const char *str);
 char	**ft_split(char const *s, char c);
-void	ft_error(void);
+void	ft_error(char **av);
 void	ft_free1(char **av, int flag);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mkaruvan <mkaruvan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 08:56:40 by mkaruvan          #+#    #+#             */
-/*   Updated: 2022/04/09 12:04:31 by mkaruvan         ###   ########.fr       */
+/*   Updated: 2022/04/09 12:17:44 by mkaruvan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ int	main(int ac, char **av)
 	flag = 0;
 	if (len == 1)
 	{
-		ft_atoi(av[1]);
 		av = (char **)splited(av);
 		len = count_nums(av);
 		flag = 1;

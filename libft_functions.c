@@ -6,7 +6,7 @@
 /*   By: mkaruvan <mkaruvan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 08:56:21 by mkaruvan          #+#    #+#             */
-/*   Updated: 2022/04/09 09:53:36 by mkaruvan         ###   ########.fr       */
+/*   Updated: 2022/04/09 11:39:10 by mkaruvan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ size_t	ft_strlen(const char *s)
 int	ft_atoi(const char *str)
 {
 	int				count;
-	unsigned int	sum;
+	unsigned long	sum;
 
 	count = 1;
 	sum = 0;
@@ -53,11 +53,11 @@ int	ft_atoi(const char *str)
 	{
 		sum = sum * 10 + (*str - '0');
 		str++;
+		if (sum > 2147483648 && count == -1)
+			ft_error();
+		else if (sum > 2147483647 && count == 1)
+			ft_error();
 	}
-	if (sum > 2147483648 && count == -1)
-		ft_error();
-	else if (sum > 2147483647 && count == 1)
-		ft_error();
 	return (sum * count);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mkaruvan <mkaruvan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 08:57:35 by mkaruvan          #+#    #+#             */
-/*   Updated: 2022/04/02 07:20:53 by mkaruvan         ###   ########.fr       */
+/*   Updated: 2022/04/09 11:23:28 by mkaruvan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,20 @@ void	rank_list(int len, char **av, t_new **lst)
 	ranker(arr1, arr2, lst, len);
 	free(arr1);
 	free(arr2);
+}
+
+void	ft_free1(char **av, int flag)
+{
+	int		i;
+
+	i = 1;
+	if (flag == 1)
+	{
+		while (av[i] != NULL)
+		{
+			free(av[i]);
+			i++;
+		}
+		free(av);
+	}
 }

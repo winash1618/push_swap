@@ -6,7 +6,7 @@
 /*   By: mkaruvan <mkaruvan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 08:56:40 by mkaruvan          #+#    #+#             */
-/*   Updated: 2022/04/06 08:12:38 by mkaruvan         ###   ########.fr       */
+/*   Updated: 2022/04/09 12:04:31 by mkaruvan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,26 +22,15 @@ static int	count_nums(char **av)
 	return (--i);
 }
 
-static void	ft_free(t_new **me, char **av, int flag)
+static void	ft_free(t_new **me)
 {
 	t_new	*first;
-	int		i;
 
-	i = 1;
 	while (*me != NULL)
 	{
 		first = *me;
 		delete_cond(me);
 		free(first);
-	}
-	if (flag)
-	{
-		while (av[i] != NULL)
-		{
-			free(av[i]);
-			i++;
-		}
-		free(av);
 	}
 }
 
@@ -87,13 +76,14 @@ static void	push_swap(t_new **me, int len)
 int	main(int ac, char **av)
 {
 	int		len;
-	int		flag;
 	t_new	*me;
+	int		flag;
 
-	flag = 0;
 	len = ac - 1;
+	flag = 0;
 	if (len == 1)
 	{
+		ft_atoi(av[1]);
 		av = (char **)splited(av);
 		len = count_nums(av);
 		flag = 1;
@@ -103,7 +93,8 @@ int	main(int ac, char **av)
 		me = set_num_list(av);
 		rank_list(len, av, &me);
 		push_swap(&me, len);
-		ft_free(&me, av, flag);
+		ft_free(&me);
 	}
+	ft_free1(av, flag);
 	return (0);
 }

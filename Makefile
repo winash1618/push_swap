@@ -6,7 +6,7 @@
 #    By: mkaruvan <mkaruvan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/28 08:55:20 by mkaruvan          #+#    #+#              #
-#    Updated: 2022/04/09 09:55:08 by mkaruvan         ###   ########.fr        #
+#    Updated: 2022/04/09 12:12:50 by mkaruvan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,12 +49,12 @@ $(NAME_M): $(OBJ)
 clean:
 	@echo "$(WHT)Removing o-files...$(EOC)"
 	@/bin/rm -f $(OBJ)
+	@/bin/rm -f $(NAME_A)
 	@echo "$(GREEN)Clean done.$(EOC)"
 
 fclean: clean
 	@echo "$(WHT)Removing object- and binary -files...$(EOC)"
 	@/bin/rm -f $(NAME_M)
-	@/bin/rm -f $(NAME_A)
 	@echo "$(GREEN)Fclean done.$(EOC)"
 
 re: fclean all

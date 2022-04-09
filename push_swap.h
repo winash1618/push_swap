@@ -6,7 +6,7 @@
 /*   By: mkaruvan <mkaruvan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 08:56:54 by mkaruvan          #+#    #+#             */
-/*   Updated: 2022/04/09 09:44:18 by mkaruvan         ###   ########.fr       */
+/*   Updated: 2022/04/09 12:06:02 by mkaruvan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,6 @@ int		ft_atoi_dup(const char *str);
 int		is_atoi_err(const char *str);
 char	**ft_split(char const *s, char c);
 void	ft_error(void);
+void	ft_free1(char **av, int flag);
 
 #endif

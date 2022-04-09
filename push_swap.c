@@ -6,7 +6,7 @@
 /*   By: mkaruvan <mkaruvan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 08:56:40 by mkaruvan          #+#    #+#             */
-/*   Updated: 2022/04/06 08:10:55 by mkaruvan         ###   ########.fr       */
+/*   Updated: 2022/04/06 08:12:38 by mkaruvan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	ft_free(t_new **me, char **av, int flag)
 	t_new	*first;
 	int		i;
 
-	i = 1; // i had to start from 1 since i did not allocate av[0]
+	i = 1;
 	while (*me != NULL)
 	{
 		first = *me;
@@ -36,7 +36,6 @@ static void	ft_free(t_new **me, char **av, int flag)
 	}
 	if (flag)
 	{
-		
 		while (av[i] != NULL)
 		{
 			free(av[i]);

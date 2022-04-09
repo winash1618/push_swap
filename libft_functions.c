@@ -6,7 +6,7 @@
 /*   By: mkaruvan <mkaruvan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 08:56:21 by mkaruvan          #+#    #+#             */
-/*   Updated: 2022/04/05 14:02:34 by mkaruvan         ###   ########.fr       */
+/*   Updated: 2022/04/09 09:53:36 by mkaruvan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	ft_atoi(const char *str)
 
 	count = 1;
 	sum = 0;
+	sum = 0;
 	while (*str == ' ' || *str == '\n' || *str == '\t' || *str == '\f'
 		|| *str == '\r' || *str == '\v')
 		str++;
@@ -54,9 +55,9 @@ int	ft_atoi(const char *str)
 		str++;
 	}
 	if (sum > 2147483648 && count == -1)
-		return (0);
+		ft_error();
 	else if (sum > 2147483647 && count == 1)
-		return (-1);
+		ft_error();
 	return (sum * count);
 }
 

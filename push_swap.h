@@ -6,7 +6,7 @@
 /*   By: mkaruvan <mkaruvan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 08:56:54 by mkaruvan          #+#    #+#             */
-/*   Updated: 2022/04/05 14:03:31 by mkaruvan         ###   ########.fr       */
+/*   Updated: 2022/04/09 09:44:18 by mkaruvan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 # include <unistd.h>
 # include <stdio.h>
+# include <limits.h>
 # include <stdlib.h>
 
 typedef struct nums
@@ -46,5 +47,6 @@ int		is_integer(char **av, size_t len);
 int		ft_atoi_dup(const char *str);
 int		is_atoi_err(const char *str);
 char	**ft_split(char const *s, char c);
+void	ft_error(void);
 
 #endif

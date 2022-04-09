@@ -6,11 +6,17 @@
 /*   By: mkaruvan <mkaruvan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 08:57:25 by mkaruvan          #+#    #+#             */
-/*   Updated: 2022/03/29 17:08:08 by mkaruvan         ###   ########.fr       */
+/*   Updated: 2022/04/09 09:44:04 by mkaruvan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	ft_error(void)
+{
+	write(1, "Error\n", 6);
+	exit(1);
+}
 
 void	s_action(t_new **lst)
 {

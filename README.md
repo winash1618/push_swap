@@ -1,5 +1,14 @@
 # push_swap
 
+## tests i did
+- valgrind ./push_swap "9223372036854775808" : Error
+- valgrind ./push_swap "9223372036854775808 54" : Error
+- valgrind ./push_swap 2 8 9 654f654656 : Error
+- valgrind ./push_swap a : Error
+- valgrind ./push_swap 4 8 9 7 9223372564654 : Error
+- valgrind ./push_swap "2342342343" : Error
+- valgrind ./push_swap 2036854775807 : Error
+- valgrind ./push_swap 20368547 : Error
 ## make file issue
 - If any of the file in makefile have any changes you just need to run make reload it. but in my case it was not happening, because i was not checking the object file before running the $(NAME_M) rule this made my make file say no need to run the make file eventhough there is some changes i made. Inorder to correct this error i changed $(OBJ) to $(SRC_M:.c=.o) and checked $(OBJ) before running the $(NAME) rule.
 

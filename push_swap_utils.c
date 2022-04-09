@@ -6,7 +6,7 @@
 /*   By: mkaruvan <mkaruvan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 08:57:35 by mkaruvan          #+#    #+#             */
-/*   Updated: 2022/04/09 12:29:01 by mkaruvan         ###   ########.fr       */
+/*   Updated: 2022/04/09 14:14:33 by mkaruvan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	rank_list(int len, char **av, t_new **lst)
 		return ;
 	while (i < len)
 	{
-		arr1[i] = ft_atoi(av[i + 1], av);
+		arr1[i] = ft_atoi(av[i + 1], av, 1);
 		arr2[i++] = 0;
 	}
 	ranker(arr1, arr2, lst, len);

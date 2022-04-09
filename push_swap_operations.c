@@ -6,16 +6,16 @@
 /*   By: mkaruvan <mkaruvan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 08:57:25 by mkaruvan          #+#    #+#             */
-/*   Updated: 2022/04/09 12:24:32 by mkaruvan         ###   ########.fr       */
+/*   Updated: 2022/04/09 14:18:55 by mkaruvan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_error(char **av)
+void	ft_error(char **av, int flag)
 {
 	write(1, "Error\n", 6);
-	ft_free1(av, 1);
+	ft_free1(av, flag);
 	exit(1);
 }
 

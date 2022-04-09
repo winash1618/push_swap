@@ -6,7 +6,7 @@
 /*   By: mkaruvan <mkaruvan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 08:56:40 by mkaruvan          #+#    #+#             */
-/*   Updated: 2022/04/09 12:17:44 by mkaruvan         ###   ########.fr       */
+/*   Updated: 2022/04/09 14:28:57 by mkaruvan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	main(int ac, char **av)
 		len = count_nums(av);
 		flag = 1;
 	}
-	if (is_string_number(av, len) && len > 0 && is_integer(av, len))
+	if (is_string_number(av, len) && len > 0 && is_integer(av, len, flag))
 	{
 		me = set_num_list(av);
 		rank_list(len, av, &me);

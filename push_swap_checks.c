@@ -6,7 +6,7 @@
 /*   By: mkaruvan <mkaruvan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 08:57:12 by mkaruvan          #+#    #+#             */
-/*   Updated: 2022/04/09 12:28:52 by mkaruvan         ###   ########.fr       */
+/*   Updated: 2022/04/09 14:28:37 by mkaruvan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int	is_duplicate(t_new *lst, size_t len)
 	return (0);
 }
 
-int	is_integer(char **av, size_t len)
+int	is_integer(char **av, size_t len, int flag)
 {
 	int	i;
 	int	k;
@@ -100,7 +100,7 @@ int	is_integer(char **av, size_t len)
 	j = 0;
 	while (len--)
 	{
-		k = ft_atoi(av[i], av);
+		k = ft_atoi(av[i], av, flag);
 		if ((k == 0 || k == -1) && k != ft_atoi_dup(av[i]))
 			j++;
 		if (is_atoi_err(av[i]))

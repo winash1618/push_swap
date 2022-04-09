@@ -1,5 +1,8 @@
 # push_swap
 
+## make file issue
+- If any of the file in makefile have any changes you just need to run make reload it. but in my case it was not happening, because i was not checking the object file before running the $(NAME_M) rule this made my make file say no need to run the make file eventhough there is some changes i made. Inorder to correct this error i changed $(OBJ) to $(SRC_M:.c=.o) and checked $(OBJ) before running the $(NAME) rule.
+
 ## testers
 - https://github.com/o-reo/push_swap_visualizer
 - https://github.com/mharriso/school21-checklists/blob/master/ng_2_push_swap.pdf

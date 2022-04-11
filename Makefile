@@ -10,9 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME_M = push_swap
-
-NAME_A = push_swap.a
+NAME = push_swap
 
 SRC_M = big_sort.c \
 		circular_linked_list_utils.c \
@@ -38,23 +36,21 @@ CC = gcc
 
 FLAGS = -Wall -Wextra -Werror
 
-all: $(NAME_M)
+all: $(NAME)
 
-$(NAME_M): $(OBJ)
+$(NAME): $(OBJ)
 	@echo "$(WHT)Compiling push_swap...$(EOC)"
-	@ar rcs $(NAME_A) $(OBJ)
-	@$(CC) $(FLAGS) $(NAME_A) -o $(NAME_M)
+	@$(CC) $(FLAGS) $(OBJ) -o $(NAME)
 	@echo "$(GREEN)push_swap build completed.$(EOC)"
 
 clean:
 	@echo "$(WHT)Removing o-files...$(EOC)"
 	@/bin/rm -f $(OBJ)
-	@/bin/rm -f $(NAME_A)
 	@echo "$(GREEN)Clean done.$(EOC)"
 
 fclean: clean
 	@echo "$(WHT)Removing object- and binary -files...$(EOC)"
-	@/bin/rm -f $(NAME_M)
+	@/bin/rm -f $(NAME)
 	@echo "$(GREEN)Fclean done.$(EOC)"
 
 re: fclean all

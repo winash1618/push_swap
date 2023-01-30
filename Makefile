@@ -3,56 +3,64 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mkaruvan <mkaruvan@student.42.fr>          +#+  +:+       +#+         #
+#    By: mkaruvan <mkaruvan@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/28 08:55:20 by mkaruvan          #+#    #+#              #
-#    Updated: 2022/04/09 12:12:50 by mkaruvan         ###   ########.fr        #
+#    Updated: 2023/01/30 10:02:30 by mkaruvan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap
+NAME        := push_swap
 
-SRC_M = big_sort.c \
-		circular_linked_list_utils.c \
-		libft_functions.c \
-		push_swap_checks.c \
-		push_swap_operations.c \
-		push_swap_utils.c \
-		push_swap.c \
-		small_sort.c \
-		ft_split.c
+INC_DIR     := includes
 
-HEADERS_M = push_swap.h
+CC          := gcc
 
-OBJ = $(SRC_M:.c=.o)
+FLAGS       := -Wall -Wextra -Werror 
 
-GREEN = \033[1;32m
-RED = \033[1;31m
-YEL = \033[1;33m
-WHT = \033[1;37m
-EOC = \033[1;0m
+RM          := rm -f
 
-CC = gcc
+SRCS        := srcs/push_swap_utils.c \
+               srcs/circular_linked_list_utils.c \
+               srcs/push_swap.c \
+               srcs/big_sort.c \
+               srcs/push_swap_operations.c \
+               srcs/small_sort.c \
+               srcs/libft_functions.c \
+               srcs/push_swap_checks.c \
+               srcs/ft_split.c \
 
-FLAGS = -Wall -Wextra -Werror
+OBJS        := $(SRCS:.c=.o)
 
-all: $(NAME)
+%.o: %.c
+	$(CC) $(FLAGS) -I $(INC_DIR) -c $< -o $@
 
-$(NAME): $(OBJ)
-	@echo "$(WHT)Compiling push_swap...$(EOC)"
-	@$(CC) $(FLAGS) $(OBJ) -o $(NAME)
-	@echo "$(GREEN)push_swap build completed.$(EOC)"
+CLR_RMV     := \033[0m
+RED         := \033[1;31m
+GREEN       := \033[1;32m
+YELLOW      := \033[1;33m
+BLUE        := \033[1;34m
+CYAN        := \033[1;36m
+
+${NAME}: ${OBJS}
+		 @echo "$(GREEN)Compilation of ${YELLOW}$(NAME)...${CLR_RMV}"
+		 ${CC} ${FLAGS} -o ${NAME} ${OBJS}
+		 @echo "$(GREEN)$(NAME) created[0m ✔️${CLR_RMV}"
+
+all         : ${NAME}
+
+bonus       : all
 
 clean:
-	@echo "$(WHT)Removing o-files...$(EOC)"
-	@/bin/rm -f $(OBJ)
-	@echo "$(GREEN)Clean done.$(EOC)"
+			  @ ${RM} *.o */*.o */*/*.o
+			  @ echo "$(RED)Deleting $(CYAN)$(NAME) objs ✔️${CLR_RMV}"
 
 fclean: clean
-	@echo "$(WHT)Removing object- and binary -files...$(EOC)"
-	@/bin/rm -f $(NAME)
-	@echo "$(GREEN)Fclean done.$(EOC)"
+			@ ${RM} ${NAME}
+			@ echo "$(RED)Deleting $(CYAN)$(NAME) binary ✔️${CLR_RMV}"
 
-re: fclean all
+re:         fclean all
 
-.PHONY: all clean fclean re
+.PHONY:     all clean fclean re
+
+

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkaruvan <mkaruvan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mkaruvan <mkaruvan@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 08:56:54 by mkaruvan          #+#    #+#             */
-/*   Updated: 2022/04/09 14:28:47 by mkaruvan         ###   ########.fr       */
+/*   Updated: 2023/02/10 14:50:10 by mkaruvan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,38 +16,17 @@
 # include <stdio.h>
 # include <limits.h>
 # include <stdlib.h>
+# include "libft.h"
 
-typedef struct nums
+typedef struct s_stack
 {
-	int			data;
-	int			rank;
-	struct nums	*next_num;
-	struct nums	*prev_num;
-}	t_new;
+	int				stack;
+	int				size;
+	int				top;
+	struct s_stack	*next;
+	struct s_stack	*prev;
+}					t_stack;
 
-void	big_sort(t_new **a, t_new **b);
-void	delete_cond(t_new **from);
-t_new	*set_num_list(char **arg);
-int		ft_lstsize(t_new *lst);
-size_t	ft_strlen(const char *s);
-int		ft_atoi(const char *str, char **av, int flag);
-int		is_sorted_list(t_new *lst, int len);
-void	s_action(t_new **lst);
-void	p_action(t_new **src, t_new **dst, char *str);
-void	r_action(t_new **lst, char *str);
-void	rr_action(t_new **lst, char *str);
-int		get_max(t_new *lst);
-void	rank_list(int len, char **av, t_new **lst);
-void	five_sort(t_new **l_a, t_new **l_b, int len);
-int		get_min(t_new *lst);
-int		is_string_number(char **av, int len);
-int		ft_isdigit(int c);
-int		is_duplicate(t_new *lst, size_t len);
-int		is_integer(char **av, size_t len, int flag);
-int		ft_atoi_dup(const char *str);
-int		is_atoi_err(const char *str);
-char	**ft_split(char const *s, char c);
-void	ft_error(char **av, int flag);
-void	ft_free1(char **av, int flag);
+
 
 #endif

@@ -6,7 +6,7 @@
 #    By: mkaruvan <mkaruvan@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/28 08:55:20 by mkaruvan          #+#    #+#              #
-#    Updated: 2023/02/10 14:53:42 by mkaruvan         ###   ########.fr        #
+#    Updated: 2023/02/11 03:36:46 by mkaruvan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ RM          := rm -f
 
 LIBFT	    := libft/libft.a
 
-SRCS        := srcs/main.c
+SRCS        := srcs/main.c srcs/validate_args.c srcs/handle_errors.c
 
 OBJS        := $(SRCS:.c=.o)
 

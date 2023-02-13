@@ -6,7 +6,7 @@
 #    By: mkaruvan <mkaruvan@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/28 08:55:20 by mkaruvan          #+#    #+#              #
-#    Updated: 2023/02/11 03:36:46 by mkaruvan         ###   ########.fr        #
+#    Updated: 2023/02/13 05:12:45 by mkaruvan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,15 @@ INC_DIR     := -I ./libft/includes -I ./includes
 
 CC          := gcc
 
-CFLAGS      := -Wall -Wextra -Werror 
+CFLAGS      := -Wall -Wextra -Werror -g
 
 RM          := rm -f
 
 LIBFT	    := libft/libft.a
 
-SRCS        := srcs/main.c srcs/validate_args.c srcs/handle_errors.c
+SRCS        := srcs/main.c srcs/validate_args.c srcs/handle_errors.c srcs/dlst_ops.c  srcs/dlst_utils.c srcs/moves.c \
+				srcs/print_push.c srcs/print_reverse_rotate.c srcs/print_rotate.c srcs/print_swap.c srcs/init_stack.c \
+				srcs/utils.c
 
 OBJS        := $(SRCS:.c=.o)
 

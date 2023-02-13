@@ -3,11 +3,21 @@
 int	check_args_with_only_spaces(int argc, char **argv)
 {
 	int i;
+	char *str;
 
 	i = 1;
+	str = NULL;
 	while (i < argc)
-		if (ft_strlen(ft_strtrim(argv[i++], " ")) == 0)
+	{
+		str = ft_strtrim(argv[i++], " ");
+		if (ft_strlen(str) == 0)
+		{
+			free(str);
 			return (1);
+		}
+		if (str)
+			free(str);
+	}
 	return (0);
 }
 
@@ -62,7 +72,7 @@ int check_args_for_sign_error(int argc, char **argv)
 	return (0);
 }
 
-int check_args(int argc, char **argv)
+int validate_args(int argc, char **argv)
 {
 	if (check_args_with_only_spaces(argc, argv))
 		error_exit();

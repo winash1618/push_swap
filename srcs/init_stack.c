@@ -50,7 +50,7 @@ void add_ranks_to_each_nodes(t_stack *stack)
 		temp2 = stack;
 		while (temp2)
 		{
-			if (temp1->content < temp2->content)
+			if (temp1->content > temp2->content)
 				temp1->rank += 1;
 			temp2 = temp2->next;
 		}
@@ -75,10 +75,11 @@ void init_stack(t_stack **stack, int argc, char **argv)
 	char **str;
 
 	str = split_then_free(merge_args_with_spaces(argc, argv), ft_split);
+	check_range_error(str);
 	i = -1;
 	while (str[++i])
 	{
-		ft_dlstadd_back(stack, ft_dlstnew(ft_atoi(str[i])));
+		ft_dlstadd_back(stack, ft_dlstnew(ft_atoi_modified(str[i], str)));
 		free(str[i]);
 	}
 	free(str);

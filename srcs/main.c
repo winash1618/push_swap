@@ -5,6 +5,7 @@ int	main(int argc, char **argv)
 	t_stack *stack_a;
 	t_stack *stack_b;
 
+	(void)stack_b;
 	if (argc == 1)
 		return (0);
 	stack_a = NULL;
@@ -18,15 +19,17 @@ int	main(int argc, char **argv)
 	// 	printf("str[%d]: %s\n", i, str[i]);
 	// }
 	// 
-	ft_dlstprint(stack_a);
+	// sort_three(&stack_a);
+	sort_four(&stack_a, &stack_b);
+	// ft_dlstprint(stack_a);
 	// sa(&stack_a);
 	// rra(&stack_a);
 	// ra(&stack_a);
 	// pb(&stack_a, &stack_b);
-	ft_dlstprint(stack_a);
-	ft_dlstprint(stack_b);
-	ft_dlstclear(&stack_a);
-	ft_dlstclear(&stack_b);
+	// ft_dlstprint(stack_a);
+	// ft_dlstprint(stack_b);
+	// ft_dlstclear(&stack_a);
+	// ft_dlstclear(&stack_b);
 	// init_list(argc, argv);
 	return (0);
 }

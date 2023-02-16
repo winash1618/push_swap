@@ -31,10 +31,10 @@ void reverse_rotate(t_stack **stack)
 	t_stack *temp;
 
 	temp = ft_dlstlast(*stack);
-	temp->prev->next = NULL;
-	temp->prev = NULL;
 	temp->next = *stack;
 	(*stack)->prev = temp;
+	temp = (*stack)->next;
+	(*stack)->next = NULL;
 	*stack = temp;
 }
 
@@ -48,5 +48,5 @@ void push(t_stack **stack_a, t_stack **stack_b)
 		temp->next->prev = NULL;
 	temp->prev = NULL;
 	temp->next = NULL;
-	ft_dlstadd_back(stack_b, temp);
+	ft_dlstadd_front(stack_b, temp);
 }

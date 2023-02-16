@@ -6,7 +6,7 @@
 /*   By: mkaruvan <mkaruvan@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 08:56:54 by mkaruvan          #+#    #+#             */
-/*   Updated: 2023/02/13 09:41:59 by mkaruvan         ###   ########.fr       */
+/*   Updated: 2023/02/16 12:18:56 by mkaruvan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,5 +108,15 @@ void	init_stack(t_stack **stack, int argc, char **argv);
 char	**split_then_free(char *s, char **(*f)(const char *, char));
 int		ft_atoi_modified(const char *str, char **av);
 void	check_range_error(char **str);
+
+/*************************************************************/
+/*********************** sort_three.c ************************/
+/*************************************************************/
+void sort_three(t_stack **s);
+
+/*************************************************************/
+/********************** sort_four.c **************************/
+/*************************************************************/
+void sort_four(t_stack **s_a, t_stack **s_b);
 
 #endif

@@ -35,7 +35,7 @@ char *merge_args_with_spaces(int argc, char **argv)
 			free(temp);
 		temp = merged_arg;
 	}
-	printf("merged string: %s\n", merged_arg);
+	// printf("merged string: %s\n", merged_arg);
 	return (merged_arg);
 }
 

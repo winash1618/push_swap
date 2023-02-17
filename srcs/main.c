@@ -20,7 +20,8 @@ int	main(int argc, char **argv)
 	// }
 	// 
 	// sort_three(&stack_a);
-	sort_four(&stack_a, &stack_b);
+	// sort_four(&stack_a, &stack_b);
+	sort_five_or_more_hard_way(&stack_a, &stack_b);
 	// ft_dlstprint(stack_a);
 	// sa(&stack_a);
 	// rra(&stack_a);

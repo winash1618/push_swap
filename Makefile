@@ -6,7 +6,7 @@
 #    By: mkaruvan <mkaruvan@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/28 08:55:20 by mkaruvan          #+#    #+#              #
-#    Updated: 2023/02/16 12:17:40 by mkaruvan         ###   ########.fr        #
+#    Updated: 2023/02/16 15:02:00 by mkaruvan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ LIBFT	    := libft/libft.a
 
 SRCS        := srcs/main.c srcs/validate_args.c srcs/handle_errors.c srcs/dlst_ops.c  srcs/dlst_utils.c srcs/moves.c \
 				srcs/print_push.c srcs/print_reverse_rotate.c srcs/print_rotate.c srcs/print_swap.c srcs/init_stack.c \
-				srcs/utils.c srcs/sort_three.c srcs/sort_four.c
+				srcs/utils.c srcs/sort_three.c srcs/sort_four.c srcs/sort_utils.c srcs/sort_five.c
 
 OBJS        := $(SRCS:.c=.o)
 

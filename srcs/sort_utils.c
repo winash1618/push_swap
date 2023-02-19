@@ -52,8 +52,8 @@ void do_best_rotate(t_stack **s)
 {
 	if (find_best_rotate(*s))
 		while ((*s)->rank != get_min_rank(*s))
-			ra(s);
+			rra(s);
 	else
 		while ((*s)->rank != get_min_rank(*s))
-			rra(s);
+			ra(s);
 }

@@ -14,7 +14,7 @@ void swap(t_stack **stack)
 	*stack = temp;
 }
 
-void rotate(t_stack **stack)
+void reverse_rotate(t_stack **stack)
 {
 	t_stack *temp;
 
@@ -26,7 +26,7 @@ void rotate(t_stack **stack)
 	*stack = temp;
 }
 
-void reverse_rotate(t_stack **stack)
+void rotate(t_stack **stack)
 {
 	t_stack *temp;
 

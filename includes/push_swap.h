@@ -6,7 +6,7 @@
 /*   By: mkaruvan <mkaruvan@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 08:56:54 by mkaruvan          #+#    #+#             */
-/*   Updated: 2023/02/16 16:15:11 by mkaruvan         ###   ########.fr       */
+/*   Updated: 2023/02/19 07:59:19 by mkaruvan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,5 +129,10 @@ void sort_five_or_more_hard_way(t_stack **s_a, t_stack **s_b);
 /*************************************************************/
 void do_best_rotate(t_stack **s);
 int find_best_rotate(t_stack *s);
+
+/*************************************************************/
+/*************** sort_divide_and_conquer.c *******************/
+/*************************************************************/
+void sort_divide_and_conquer(t_stack **s_a, t_stack **s_b);
 
 #endif

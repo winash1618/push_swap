@@ -39,3 +39,16 @@ void ft_dlstprint(t_stack *stack)
 	}
 	printf("*********************************************\n");
 }
+
+int ft_dlstsum(t_stack *stack)
+{
+	int sum;
+
+	sum = 0;
+	while (stack)
+	{
+		sum += stack->rank;
+		stack = stack->next;
+	}
+	return (sum);
+}

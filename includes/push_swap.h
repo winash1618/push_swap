@@ -6,7 +6,7 @@
 /*   By: mkaruvan <mkaruvan@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 08:56:54 by mkaruvan          #+#    #+#             */
-/*   Updated: 2023/02/19 07:59:19 by mkaruvan         ###   ########.fr       */
+/*   Updated: 2023/02/23 10:40:00 by mkaruvan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ t_stack	*ft_dlstlast(t_stack *lst);
 int		ft_dlstsize(t_stack *lst);
 int		ft_dlstrank_sum(t_stack *stack);
 void	ft_dlstprint(t_stack *stack);
+int 	ft_dlstsum(t_stack *stack);
 
 /**************************************************************/
 /************************ moves.c *****************************/
@@ -134,5 +135,7 @@ int find_best_rotate(t_stack *s);
 /*************** sort_divide_and_conquer.c *******************/
 /*************************************************************/
 void sort_divide_and_conquer(t_stack **s_a, t_stack **s_b);
+void sort_divide_and_conquer_a(t_stack **s_a, t_stack **s_b, t_stack *end);
+void sort_divide_and_conquer_b(t_stack **s_a, t_stack **s_b, t_stack *end);
 
 #endif

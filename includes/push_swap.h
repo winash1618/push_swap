@@ -6,7 +6,7 @@
 /*   By: mkaruvan <mkaruvan@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 08:56:54 by mkaruvan          #+#    #+#             */
-/*   Updated: 2023/02/23 10:40:00 by mkaruvan         ###   ########.fr       */
+/*   Updated: 2023/02/23 14:02:00 by mkaruvan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct s_stack
 {
 	int				content;
 	int				rank;
+	int				level;
 	struct s_stack	*next;
 	struct s_stack	*prev;
 }					t_stack;
@@ -56,7 +57,7 @@ t_stack	*ft_dlstlast(t_stack *lst);
 int		ft_dlstsize(t_stack *lst);
 int		ft_dlstrank_sum(t_stack *stack);
 void	ft_dlstprint(t_stack *stack);
-int 	ft_dlstsum(t_stack *stack);
+t_stack	*ft_dlstfirst(t_stack *stack);
 
 /**************************************************************/
 /************************ moves.c *****************************/

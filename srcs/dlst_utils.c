@@ -34,21 +34,14 @@ void ft_dlstprint(t_stack *stack)
 	tmp = stack;
 	while (tmp)
 	{
-		printf("stack: %d, rank: %d\n", tmp->content, tmp->rank);
+		printf("stack: %d, rank: %d, level: %d\n", tmp->content, tmp->rank, tmp->level);
 		tmp = tmp->next;
 	}
 	printf("*********************************************\n");
 }
 
-int ft_dlstsum(t_stack *stack)
+t_stack	*ft_dlstfirst(t_stack **stack)
 {
-	int sum;
-
-	sum = 0;
-	while (stack)
-	{
-		sum += stack->rank;
-		stack = stack->next;
-	}
-	return (sum);
+	while ( *stack && (*stack)->prev)
+		*stack = (*stack)->prev;
 }

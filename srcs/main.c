@@ -1,5 +1,14 @@
 #include "push_swap.h"
 
+void init_level(t_stack *stack)
+{
+	while (stack)
+	{
+		stack->level = 0;
+		stack = stack->next;
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack *stack_a;
@@ -22,6 +31,7 @@ int	main(int argc, char **argv)
 	// sort_three(&stack_a);
 	// sort_four(&stack_a, &stack_b);
 	// sort_five_or_more_hard_way(&stack_a, &stack_b);
+	init_level(stack_a);
 	sort_divide_and_conquer(&stack_a, &stack_b);
 	// ft_dlstprint(stack_a);
 	// sa(&stack_a);

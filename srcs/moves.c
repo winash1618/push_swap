@@ -19,6 +19,8 @@ void reverse_rotate(t_stack **stack)
 	t_stack *temp;
 
 	temp = ft_dlstlast(*stack);
+	if (!temp->prev && !temp->next)
+		return ;
 	temp->prev->next = NULL;
 	temp->prev = NULL;
 	temp->next = *stack;

@@ -32,7 +32,7 @@ int	main(int argc, char **argv)
 	// sort_four(&stack_a, &stack_b);
 	// sort_five_or_more_hard_way(&stack_a, &stack_b);
 	init_level(stack_a);
-	sort_divide_and_conquer(&stack_a, &stack_b);
+	sort_divide_and_conquer(&stack_a, &stack_b, get_min);
 	// ft_dlstprint(stack_a);
 	// sa(&stack_a);
 	// rra(&stack_a);

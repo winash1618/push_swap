@@ -40,8 +40,9 @@ void ft_dlstprint(t_stack *stack)
 	printf("*********************************************\n");
 }
 
-t_stack	*ft_dlstfirst(t_stack **stack)
+t_stack	*ft_dlstfirst(t_stack *stack)
 {
-	while ( *stack && (*stack)->prev)
-		*stack = (*stack)->prev;
+	while (stack->prev)
+		stack = stack->prev;
+	return (stack);
 }

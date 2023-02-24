@@ -6,7 +6,7 @@
 /*   By: mkaruvan <mkaruvan@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 08:56:54 by mkaruvan          #+#    #+#             */
-/*   Updated: 2023/02/23 14:02:00 by mkaruvan         ###   ########.fr       */
+/*   Updated: 2023/02/24 11:02:52 by mkaruvan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,8 +135,11 @@ int find_best_rotate(t_stack *s);
 /*************************************************************/
 /*************** sort_divide_and_conquer.c *******************/
 /*************************************************************/
-void sort_divide_and_conquer(t_stack **s_a, t_stack **s_b);
+// void sort_divide_and_conquer(t_stack **s_a, t_stack **s_b);
+void sort_divide_and_conquer(t_stack **s_a, t_stack **s_b, int (*get_min_max)(int, int));
 void sort_divide_and_conquer_a(t_stack **s_a, t_stack **s_b, t_stack *end);
 void sort_divide_and_conquer_b(t_stack **s_a, t_stack **s_b, t_stack *end);
+int get_min(int num1, int num2);
+int get_max(int num1, int num2);
 
 #endif

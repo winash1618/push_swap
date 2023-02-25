@@ -43,5 +43,6 @@ int	main(int argc, char **argv)
 	// ft_dlstclear(&stack_a);
 	// ft_dlstclear(&stack_b);
 	// init_list(argc, argv);
+	// ft_dlstprint(stack_a);
 	return (0);
 }

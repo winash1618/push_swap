@@ -6,7 +6,7 @@
 /*   By: mkaruvan <mkaruvan@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 11:35:04 by mkaruvan          #+#    #+#             */
-/*   Updated: 2023/02/02 16:39:09 by mkaruvan         ###   ########.fr       */
+/*   Updated: 2023/02/26 14:16:29 by mkaruvan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void	ft_putnbr_fd(int n, int fd)
 	ch = '\0';
 	if (n == -2147483647 - 1)
 	{
-		write(fd, "-2147483648", 11);
+		ft_putstr_fd("-2147483648", fd);
 		return ;
 	}
 	else if (n < 0)
-		write(fd, "-", 1);
+		ft_putstr_fd("-", fd);
 	if (n < 0)
 		n = n * -1;
 	c = n % 10;
@@ -34,5 +34,5 @@ void	ft_putnbr_fd(int n, int fd)
 		ft_putnbr_fd(n, fd);
 	}
 	ch = c + '0';
-	write(fd, &ch, 1);
+	ft_putstr_fd(&ch, fd);
 }

@@ -6,7 +6,7 @@
 /*   By: mkaruvan <mkaruvan@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 08:56:54 by mkaruvan          #+#    #+#             */
-/*   Updated: 2023/02/25 09:48:11 by mkaruvan         ###   ########.fr       */
+/*   Updated: 2023/02/26 14:06:43 by mkaruvan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,29 +70,29 @@ void	push(t_stack **stack_a, t_stack **stack_b);
 /**************************************************************/
 /********************* print_push.c ***************************/
 /**************************************************************/
-void	pa(t_stack **stack_a, t_stack **stack_b);
-void	pb(t_stack **stack_b, t_stack **stack_a);
+void	pa(t_stack **stack_a, t_stack **stack_b, t_list **move_stack);
+void	pb(t_stack **stack_b, t_stack **stack_a, t_list **move_stack);
 
 /**************************************************************/
 /****************** print_reverse_rotate.c ********************/
 /**************************************************************/
-void	rra(t_stack **stack);
-void	rrb(t_stack **stack);
-void	rrr(t_stack **stack_a, t_stack **stack_b);
+void	rra(t_stack **stack, t_list **move_stack);
+void	rrb(t_stack **stack, t_list **move_stack);
+void	rrr(t_stack **stack_a, t_stack **stack_b, t_list **move_stack);
 
 /**************************************************************/
 /********************* print_rotate.c *************************/
 /**************************************************************/
-void	ra(t_stack **stack);
-void	rb(t_stack **stack);
-void	rr(t_stack **stack_a, t_stack **stack_b);
+void	ra(t_stack **stack, t_list **move_stack);
+void	rb(t_stack **stack, t_list **move_stack);
+void	rr(t_stack **stack_a, t_stack **stack_b, t_list **move_stack);
 
 /**************************************************************/
 /************************ print_swap.c ************************/
 /**************************************************************/
-void	sa(t_stack **stack);
-void	sb(t_stack **stack);
-void	ss(t_stack **stack_a, t_stack **stack_b);
+void	sa(t_stack **stack, t_list **move_stack);
+void	sb(t_stack **stack, t_list **move_stack);
+void	ss(t_stack **stack_a, t_stack **stack_b, t_list **move_stack);
 
 
 /**************************************************************/
@@ -114,17 +114,17 @@ void	check_range_error(char **str);
 /*************************************************************/
 /*********************** sort_three.c ************************/
 /*************************************************************/
-void sort_three(t_stack **s);
+// void sort_three(t_stack **s);
 
-/*************************************************************/
-/********************** sort_four.c **************************/
-/*************************************************************/
-void sort_four(t_stack **s_a, t_stack **s_b);
+// /*************************************************************/
+// /********************** sort_four.c **************************/
+// /*************************************************************/
+// void sort_four(t_stack **s_a, t_stack **s_b);
 
-/*************************************************************/
-/********************** sort_five.c **************************/
-/*************************************************************/
-void sort_five_or_more_hard_way(t_stack **s_a, t_stack **s_b);
+// /*************************************************************/
+// /********************** sort_five.c **************************/
+// /*************************************************************/
+// void sort_five_or_more_hard_way(t_stack **s_a, t_stack **s_b);
 
 /*************************************************************/
 /********************** sort_utils.c *************************/
@@ -136,9 +136,9 @@ int find_best_rotate(t_stack *s);
 /*************** sort_divide_and_conquer.c *******************/
 /*************************************************************/
 // void sort_divide_and_conquer(t_stack **s_a, t_stack **s_b);
-void sort_divide_and_conquer(t_stack **s_a, t_stack **s_b, int (*get_min_max)(int, int));
-void sort_divide_and_conquer_a(t_stack **s_a, t_stack **s_b, t_stack *end);
-void sort_divide_and_conquer_b(t_stack **s_a, t_stack **s_b, int (*get_min_max)(int, int));
+// void sort_divide_and_conquer(t_stack **s_a, t_stack **s_b, int (*get_min_max)(int, int));
+void sort_divide_and_conquer_a(t_stack **s_a, t_stack **s_b,int (*get_min_max)(int, int), t_list **moves);
+void sort_divide_and_conquer_b(t_stack **s_a, t_stack **s_b, int (*get_min_max)(int, int), t_list **moves);
 int get_min(int num1, int num2);
 int get_max(int num1, int num2);
 

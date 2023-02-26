@@ -6,13 +6,13 @@
 #    By: mkaruvan <mkaruvan@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/22 14:38:28 by mkaruvan          #+#    #+#              #
-#    Updated: 2023/02/10 11:13:21 by mkaruvan         ###   ########.fr        #
+#    Updated: 2023/02/26 14:11:53 by mkaruvan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME        := libft.a
 
-CC          := gcc
+CC          := gcc -O3
 
 CFLAGS      := -Wall -Wextra -Werror -I includes
 

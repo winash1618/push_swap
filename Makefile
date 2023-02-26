@@ -6,7 +6,7 @@
 #    By: mkaruvan <mkaruvan@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/28 08:55:20 by mkaruvan          #+#    #+#              #
-#    Updated: 2023/02/25 11:37:18 by mkaruvan         ###   ########.fr        #
+#    Updated: 2023/02/26 14:09:18 by mkaruvan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME        := push_swap
 
 INC_DIR     := -I ./libft/includes -I ./includes
 
-CC          := gcc
+CC          := gcc -O3
 
 CFLAGS      := -Wall -Wextra -Werror -g
 

@@ -9,16 +9,101 @@ void init_level(t_stack *stack)
 	}
 }
 
+void ft_lstprint(t_list *move_stack)
+{
+	while (move_stack)
+	{
+		printf("%s\n", (char *)move_stack->content);
+		move_stack = move_stack->next;
+	}
+}
+
+void optimize_moves(t_list *moves)
+{
+	t_list *head;
+	t_list *old;
+
+	old = NULL;
+	head = moves;
+	while (moves->next)
+	{
+		if (!ft_strncmp(moves->content, "rra", 3) && !ft_strncmp(moves->next->content, "ra", 2))
+		{
+			old->next = moves->next->next;
+			moves = head;
+		}	
+		old = moves;
+		moves = moves->next;
+	}
+	moves = head;
+	while (moves->next)
+	{
+		if (!ft_strncmp(moves->content, "ra", 2) && !ft_strncmp(moves->next->content, "rra", 3))
+		{
+			old->next = moves->next->next;
+			moves = head;
+		}	
+		old = moves;
+		moves = moves->next;
+	}
+	moves = head;
+	while (moves->next)
+	{
+		if (!ft_strncmp(moves->content, "pa", 2) && !ft_strncmp(moves->next->content, "pb", 2))
+		{
+			old->next = moves->next->next;
+			moves = head;
+		}	
+		old = moves;
+		moves = moves->next;
+	}
+	moves = head;
+	while (moves->next)
+	{
+		if (!ft_strncmp(moves->content, "pb", 2) && !ft_strncmp(moves->next->content, "pa", 2))
+		{
+			old->next = moves->next->next;
+			moves = head;
+		}	
+		old = moves;
+		moves = moves->next;
+	}
+	moves = head;
+	while (moves->next)
+	{
+		if (!ft_strncmp(moves->content, "rb", 2) && !ft_strncmp(moves->next->content, "rrb", 3))
+		{
+			old->next = moves->next->next;
+			moves = head;
+		}	
+		old = moves;
+		moves = moves->next;
+	}
+	moves = head;
+	while (moves->next)
+	{
+		if (!ft_strncmp(moves->content, "rrb", 2) && !ft_strncmp(moves->next->content, "rb", 2))
+		{
+			old->next = moves->next->next;
+			moves = head;
+		}	
+		old = moves;
+		moves = moves->next;
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack *stack_a;
 	t_stack *stack_b;
+	t_list *move_stack;
 
 	(void)stack_b;
 	if (argc == 1)
 		return (0);
 	stack_a = NULL;
 	stack_b = NULL;
+	move_stack = NULL;
 	validate_args(argc, argv);
 	init_stack(&stack_a, argc, argv);
 	// str = ft_split(merge_args_with_spaces(argc, argv), ' ');
@@ -32,7 +117,8 @@ int	main(int argc, char **argv)
 	// sort_four(&stack_a, &stack_b);
 	// sort_five_or_more_hard_way(&stack_a, &stack_b);
 	init_level(stack_a);
-	sort_divide_and_conquer(&stack_a, &stack_b, get_min);
+	sort_divide_and_conquer_a(&stack_a, &stack_b, get_min, &move_stack);
+	optimize_moves(move_stack);
 	// ft_dlstprint(stack_a);
 	// sa(&stack_a);
 	// rra(&stack_a);
@@ -44,5 +130,6 @@ int	main(int argc, char **argv)
 	// ft_dlstclear(&stack_b);
 	// init_list(argc, argv);
 	// ft_dlstprint(stack_a);
+	ft_lstprint(move_stack);
 	return (0);
 }

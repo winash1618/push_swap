@@ -92,6 +92,44 @@ void optimize_moves(t_list *moves)
 	}
 }
 
+void hard_optimizer(t_list *moves, t_stack *stack_a, t_stack *stack_c)
+{
+	int size = ft_lstsize;
+	int *stack_count[2];
+
+	stack_count[0] = malloc(sizeof(int *) * size);
+	stack_count[1] = malloc(sizeof(int *) * size);
+
+	get_stack_count_for_each_move(stack_a, stack_c);
+	while (i < size)
+	{
+		j = 0; 
+		while (j < size)
+		{
+			if (stack_count[0][i] == stack_count[0][j])
+				
+		}
+	}
+}
+
+t_stack *duplicate_stack(t_stack *stack_a)
+{
+	t_stack *stack_c;
+	t_stack *tmp;
+
+	stack_c = NULL;
+	tmp = stack_a;
+	while (tmp)
+	{
+		t_stack *new = ft_dlstnew(tmp->content);
+		new->rank = tmp->rank;
+		new->level = tmp->level;
+		ft_dlstadd_back(&stack_c, new);
+		tmp = tmp->next;
+	}
+	return (stack_c);
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack *stack_a;
@@ -117,8 +155,10 @@ int	main(int argc, char **argv)
 	// sort_four(&stack_a, &stack_b);
 	// sort_five_or_more_hard_way(&stack_a, &stack_b);
 	init_level(stack_a);
+	t_stack *stack_c = duplicate_stack(stack_a);
 	sort_divide_and_conquer_a(&stack_a, &stack_b, get_min, &move_stack);
 	optimize_moves(move_stack);
+	hard_optimizer(move_stack, stack_a, stack_c);
 	// ft_dlstprint(stack_a);
 	// sa(&stack_a);
 	// rra(&stack_a);

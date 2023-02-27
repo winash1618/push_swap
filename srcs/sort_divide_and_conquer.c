@@ -162,6 +162,8 @@ void sort_divide_and_conquer_a(t_stack **s_a, t_stack **s_b, int (*get_min_max)(
 	int elem_count;
 	int high_level;
 
+	ft_dlstprint(*s_a);
+	ft_dlstprint(*s_b);
 	elem_count = highest_level_count(*s_a);
 	rank_sum = highest_level_rank_sum(*s_a);
 	high_level = highest_level(*s_a);
@@ -204,6 +206,8 @@ void sort_divide_and_conquer_a(t_stack **s_a, t_stack **s_b, int (*get_min_max)(
 		while (highest_level--)
 			pa(s_b, s_a, moves);
 	}
+	ft_dlstprint(*s_a);
+	ft_dlstprint(*s_b);
 }
 
 
@@ -212,7 +216,8 @@ void sort_divide_and_conquer_b(t_stack **s_a, t_stack **s_b, int (*get_min_max)(
 	int rank_sum;
 	int elem_count;
 	int high_level;
-
+	ft_dlstprint(*s_a);
+	ft_dlstprint(*s_b);
 	elem_count = highest_level_count(*s_a);
 	rank_sum = highest_level_rank_sum(*s_a);
 	high_level = highest_level(*s_a);
@@ -256,4 +261,6 @@ void sort_divide_and_conquer_b(t_stack **s_a, t_stack **s_b, int (*get_min_max)(
 		else if ((*s_a)->rank > (*s_a)->next->rank)
 			sb(s_a, moves);
 	}
+	ft_dlstprint(*s_a);
+	ft_dlstprint(*s_b);
 }

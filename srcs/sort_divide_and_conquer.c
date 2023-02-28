@@ -53,7 +53,7 @@ int lowest_level_count(t_stack *s_a)
 			lowest_level = s_a->level;
 		s_a = s_a->next;
 	}
-	printf("lowest_level = %d\n", lowest_level);
+	// printf("lowest_level = %d\n", lowest_level);
 	s_a = tmp;
 	while (s_a)
 	{
@@ -162,8 +162,8 @@ void sort_divide_and_conquer_a(t_stack **s_a, t_stack **s_b, int (*get_min_max)(
 	int elem_count;
 	int high_level;
 
-	ft_dlstprint(*s_a);
-	ft_dlstprint(*s_b);
+	// ft_dlstprint(*s_a);
+	// ft_dlstprint(*s_b);
 	elem_count = highest_level_count(*s_a);
 	rank_sum = highest_level_rank_sum(*s_a);
 	high_level = highest_level(*s_a);
@@ -172,9 +172,13 @@ void sort_divide_and_conquer_a(t_stack **s_a, t_stack **s_b, int (*get_min_max)(
 	{
 		(*s_a)->level += 1;
 		if (get_min_max((*s_a)->rank, rank_sum/elem_count))
+		{
+			// printf("pb\n");
 			pb(s_a, s_b, moves);
+		}
 		else
 		{
+			// printf("ra\n");
 			ra(s_a, moves);
 			ra_count++;
 		}
@@ -192,7 +196,10 @@ void sort_divide_and_conquer_a(t_stack **s_a, t_stack **s_b, int (*get_min_max)(
 		if (highest_level_count(*s_a) == 1)
 			;
 		else if ((*s_a)->rank > (*s_a)->next->rank)
+		{
+			// printf("sa\n");
 			sa(s_a, moves);
+		}
 	}
 	if (ft_dlstsize(*s_b) && highest_level_count(*s_b) > 2)
 		sort_divide_and_conquer_b(s_b, s_a, get_max, moves);
@@ -201,13 +208,19 @@ void sort_divide_and_conquer_a(t_stack **s_a, t_stack **s_b, int (*get_min_max)(
 		if (highest_level_count(*s_b) == 1)
 			;
 		else if ((*s_b)->rank < (*s_b)->next->rank)
+		{
+			// printf("sb\n");
 			sb(s_b, moves);
+		}
 		int highest_level = highest_level_count(*s_b);
 		while (highest_level--)
+		{
+			// printf("pa\n");
 			pa(s_b, s_a, moves);
+		}
 	}
-	ft_dlstprint(*s_a);
-	ft_dlstprint(*s_b);
+	// ft_dlstprint(*s_a);
+	// ft_dlstprint(*s_b);
 }
 
 
@@ -216,8 +229,8 @@ void sort_divide_and_conquer_b(t_stack **s_a, t_stack **s_b, int (*get_min_max)(
 	int rank_sum;
 	int elem_count;
 	int high_level;
-	ft_dlstprint(*s_a);
-	ft_dlstprint(*s_b);
+	// ft_dlstprint(*s_a);
+	// ft_dlstprint(*s_b);
 	elem_count = highest_level_count(*s_a);
 	rank_sum = highest_level_rank_sum(*s_a);
 	high_level = highest_level(*s_a);
@@ -226,16 +239,23 @@ void sort_divide_and_conquer_b(t_stack **s_a, t_stack **s_b, int (*get_min_max)(
 	{
 		(*s_a)->level += 1;
 		if (get_min_max((*s_a)->rank, rank_sum/elem_count))
+		{
+			// printf("pa\n");
 			pa(s_a, s_b, moves);
+		}
 		else
 		{
+			// printf("rb\n");
 			rb(s_a, moves);
 			ra_count++;
 		}
 		if ((*s_a)->level != high_level)
 		{
 			while (ft_dlstsize(*s_a) > 1 && ra_count--)
+			{
+				// printf("rrb\n");
 				rrb(s_a, moves);
+			}
 			break;
 		}
 	}
@@ -247,10 +267,16 @@ void sort_divide_and_conquer_b(t_stack **s_a, t_stack **s_b, int (*get_min_max)(
 		if (highest_level_count(*s_b) == 1)
 			;
 		else if ((*s_b)->rank < (*s_b)->next->rank)
+		{
+			// printf("sa\n");
 			sa(s_b, moves);
+		}
 		int highest_level = highest_level_count(*s_b);
 		while (highest_level--)
+		{
+			// printf("pa\n");
 			pa(s_b, s_a, moves);
+		}
 	}
 	if (ft_dlstsize(*s_a) && highest_level_count(*s_a) > 2)
 		sort_divide_and_conquer_b(s_a, s_b, get_max, moves);
@@ -259,8 +285,11 @@ void sort_divide_and_conquer_b(t_stack **s_a, t_stack **s_b, int (*get_min_max)(
 		if (highest_level_count(*s_a) == 1)
 			;
 		else if ((*s_a)->rank > (*s_a)->next->rank)
+		{
+			// printf("sb\n");
 			sb(s_a, moves);
+		}
 	}
-	ft_dlstprint(*s_a);
-	ft_dlstprint(*s_b);
+	// ft_dlstprint(*s_a);
+	// ft_dlstprint(*s_b);
 }

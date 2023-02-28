@@ -32,6 +32,8 @@ void rotate(t_stack **stack)
 {
 	t_stack *temp;
 
+	if (!*stack || !(*stack)->next)
+		return ;
 	temp = ft_dlstlast(*stack);
 	temp->next = *stack;
 	(*stack)->prev = temp;
@@ -44,6 +46,8 @@ void push(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack *temp;
 
+	if (!*stack_a)
+		return ;
 	temp = *stack_a;
 	*stack_a = (*stack_a)->next;
 	if (temp->next)

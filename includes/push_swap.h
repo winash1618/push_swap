@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkaruvan <mkaruvan@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: mkaruvan <mkaruvan@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 08:56:54 by mkaruvan          #+#    #+#             */
-/*   Updated: 2023/02/26 14:06:43 by mkaruvan         ###   ########.fr       */
+/*   Updated: 2023/03/03 20:09:15 by mkaruvan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,36 +110,43 @@ void	init_stack(t_stack **stack, int argc, char **argv);
 char	**split_then_free(char *s, char **(*f)(const char *, char));
 int		ft_atoi_modified(const char *str, char **av);
 void	check_range_error(char **str);
+void	ft_lstprint(t_list *move_stack);
+void	init_level(t_stack *stack);
 
 /*************************************************************/
 /*********************** sort_three.c ************************/
 /*************************************************************/
-// void sort_three(t_stack **s);
+void sort_three(t_stack **s, t_list **moves);
 
-// /*************************************************************/
-// /********************** sort_four.c **************************/
-// /*************************************************************/
-// void sort_four(t_stack **s_a, t_stack **s_b);
+/*************************************************************/
+/********************** sort_four.c **************************/
+/*************************************************************/
+void sort_four(t_stack **s_a, t_stack **s_b, t_list **moves);
 
-// /*************************************************************/
-// /********************** sort_five.c **************************/
-// /*************************************************************/
-// void sort_five_or_more_hard_way(t_stack **s_a, t_stack **s_b);
+/*************************************************************/
+/********************** sort_five.c **************************/
+/*************************************************************/
+void sort_five_or_more_hard_way(t_stack **s_a, t_stack **s_b, t_list **moves);
 
 /*************************************************************/
 /********************** sort_utils.c *************************/
 /*************************************************************/
-void do_best_rotate(t_stack **s);
+void do_best_rotate(t_stack **s, t_list **moves);
 int find_best_rotate(t_stack *s);
 
 /*************************************************************/
 /*************** sort_divide_and_conquer.c *******************/
 /*************************************************************/
-// void sort_divide_and_conquer(t_stack **s_a, t_stack **s_b);
-// void sort_divide_and_conquer(t_stack **s_a, t_stack **s_b, int (*get_min_max)(int, int));
-void sort_divide_and_conquer_a(t_stack **s_a, t_stack **s_b,int (*get_min_max)(int, int), t_list **moves);
+void sort_divide_and_conquer_a(t_stack **s_a, t_stack **s_b, int (*get_min_max)(int, int), t_list **moves);
 void sort_divide_and_conquer_b(t_stack **s_a, t_stack **s_b, int (*get_min_max)(int, int), t_list **moves);
 int get_min(int num1, int num2);
 int get_max(int num1, int num2);
+
+/*************************************************************/
+/******************* optimize_moves.c ************************/
+/*************************************************************/
+void optimize_moves(t_list *moves);
+void make_moves(t_list *stack, t_stack **temp, t_stack **temp2);
+void optimize_more_moves(t_list *moves, int counter);
 
 #endif

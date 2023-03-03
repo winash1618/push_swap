@@ -34,7 +34,7 @@ void ft_dlstprint(t_stack *stack)
 	tmp = stack;
 	while (tmp)
 	{
-		printf("stack: %d, rank: %d\n", tmp->content, tmp->rank);
+		printf("stack: %d, rank: %d, level: %d\n", tmp->content, tmp->rank, tmp->level);
 		tmp = tmp->next;
 	}
 	printf("*********************************************\n");

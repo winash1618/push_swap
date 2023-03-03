@@ -48,12 +48,12 @@ int get_max_rank(t_stack *s)
 	return (max);
 }
 
-// void do_best_rotate(t_stack **s)
-// {
-// 	if (find_best_rotate(*s))
-// 		while ((*s)->rank != get_min_rank(*s))
-// 			rra(s);
-// 	else
-// 		while ((*s)->rank != get_min_rank(*s))
-// 			ra(s);
-// }
+void do_best_rotate(t_stack **s, t_list **moves)
+{
+	if (find_best_rotate(*s))
+		while ((*s)->rank != get_min_rank(*s))
+			rra(s, moves);
+	else
+		while ((*s)->rank != get_min_rank(*s))
+			ra(s, moves);
+}

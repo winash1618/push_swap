@@ -44,3 +44,21 @@ void check_range_error(char **str)
 	while (str[++i])
 		ft_atoi_modified(str[i], str);
 }
+
+void ft_lstprint(t_list *move_stack)
+{
+	while (move_stack)
+	{
+		printf("%s\n", (char *)move_stack->content);
+		move_stack = move_stack->next;
+	}
+}
+
+void init_level(t_stack *stack)
+{
+	while (stack)
+	{
+		stack->level = 0;
+		stack = stack->next;
+	}
+}

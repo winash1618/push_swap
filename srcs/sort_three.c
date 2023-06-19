@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void sort_three(t_stack **s, t_list **moves)
+void sort_three(t_stack **s, t_list ** moves)
 {
 	// ft_dlstprint(*s);
 	if ((*s)->rank < (*s)->next->rank && (*s)->rank > (*s)->next->next->rank &&

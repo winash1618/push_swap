@@ -2,7 +2,6 @@
 
 void sort_three(t_stack **s, t_list ** moves)
 {
-	// ft_dlstprint(*s);
 	if ((*s)->rank < (*s)->next->rank && (*s)->rank > (*s)->next->next->rank &&
 		(*s)->next->rank > (*s)->next->next->rank)
 		rra(s, moves);
@@ -29,7 +28,6 @@ void sort_three(t_stack **s, t_list ** moves)
 		else
 			ra(s, moves);
 	}
-	// ft_dlstprint(*s);
 }
 
 

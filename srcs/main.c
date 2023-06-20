@@ -30,8 +30,9 @@ void sorting_logic(t_stack **s_a, t_stack **s_b, t_list **moves)
 		sort_five_or_more_hard_way(s_a, s_b, moves);
 	else
 	{
-		sort_divide_and_conquer_a(s_a, s_b, get_min, moves);
-		optimize_moves(*moves);
+		// sort_divide_and_conquer_a(s_a, s_b, get_min, moves);
+		// optimize_moves(*moves);
+		sort_chunk(s_a, s_b, moves);
 	}
 }
 
